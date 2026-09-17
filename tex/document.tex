@@ -1,6 +1,321 @@
-\documentclass{article}
-\begin{document}
+\documentclass[a4paper]{article}
 
-Hello World from GitHub Actions!
+\usepackage[
+    a4paper,
+    left=0.4in,
+    right=0.4in,
+    top=0.2in,
+    bottom=0.2in
+]{geometry}
+
+\usepackage{marvosym}
+\usepackage{fontspec}
+\usepackage{xunicode,xltxtra,url,parskip} 	%other packages for formatting
+\RequirePackage{color,graphicx}
+\usepackage[usenames,dvipsnames]{xcolor}
+%\begin{comment}
+%\end{comment}
+\usepackage{supertabular} 				%for Grades
+\usepackage{titlesec}					%custom \section
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{stix}
+%\usepackage{twemojis}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmainfont[
+%SmallCapsFont = Fontin-SmallCaps.otf,
+%BoldFont = Fontin-Bold.otf,
+%ItalicFont = Fontin-Italic.otf
+%]
+%{Fontin.otf}
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{3pt}{3pt}
+\hyphenation{im-pre-se}
+\usepackage[absolute]{textpos}
+\usepackage{amssymb}
+\setlength{\TPHorizModule}{30mm}
+\setlength{\TPVertModule}{\TPHorizModule}
+\textblockorigin{2mm}{0.65\paperheight}
+\setlength{\parindent}{0pt}
+
+\usepackage{fontspec}
+
+%----------
+\usepackage{worldflags}
+
+\usepackage{graphicx}
+
+%----------
+
+\newcommand{\apple}{\char"F8FF}
+\usepackage{lipsum}
+\usepackage{setspace}
+\usepackage{fontawesome5}
+
+\usepackage{xcolor}
+\usepackage{ragged2e}
+
+\usepackage{tikz}
+
+
+\begin{document}
+\pagestyle{empty} 						% non-numbered pages
+\font\fb=''[cmr10]'' 						%for use with \LaTeX command
+
+
+\newcommand{\nyu}{\raisebox{-0.8ex}{\includegraphics[height=1.2em]{NYU.png}}}
+\newcommand{\uic}{\raisebox{-0.4ex}{\includegraphics[height=1.2em]{UIC.png}}}
+\definecolor{previousWork}{rgb}{0.4,0.4,0.4}
+
+
+
+%--------------------TITLE-------------
+\par	{\centering
+	ॐ
+%	{\setmainfont{Apple Chancery} \apple}																														\\
+	\href{https://sap586.github.io/Resume/}{$ \Uparrow$}{Sagar Panchal}																										\\
+	\small \href{mailto:sap586@nyu.edu}{sap586@nyu.edu}		\textbullet{+1 (607) 314-0114}		\textbullet {Binghamton, NY - 13901}																		\\
+%	\small \href{https://www.linkedin.com/in/sap586/}{https://www.linkedin.com/in/sap586/}		
+	%\textbullet \href{https://sap586.github.io/LivingSpace/}{https://sap586.github.io/LivingSpace/}		
+	\par}
+	
+%Section: About--------------------------------------
+\vspace{-1.5em} % adjust value until it looks balanced
+\parbox{1\linewidth}{
+\section{\hfill \textbf{ABOUT}}
+\begin{justify}
+\textsc{
+Engineer rooted in automation, machine software, and industrial systems with experience across manufacturing, robotics and embedded technologies. I bring system-level thinking, I value clarity and continuous improvement. I am seeking roles that offers stronger ownership and opportunity to design, build or architect impactful engineering solutions - whether in software, Robotics or Systems-Architecture.
+}
+\end{justify}
+}
+
+
+
+
+
+
+%Section: Education--------------------------------------
+\vspace{-0.6em} % adjust value until it looks balanced
+
+\section{\hfill \textbf{EDUCATION}}
+%\begin{tabular}{rl}
+%\small{}\textsc{		Jan 2016-17	} 	& 		\textsc{	MS, Electrical \& Computer engineering, 		\small {(3.41/4)}	}	\\
+% 								& 		\textsc{	Tandon School of Engineering, New York University \nyu\;					}	 \\
+% \small{}\textsc{		Jun 2010-14	} 	& 		\textsc{	BE, Instrumentation \small{\&} Controls,		\small {(7.04/10)}}	\\
+% 								& 		\textsc{	SVIT, Gujarat Technological University					}	\\
+%\end{tabular}
+
+
+\begin{tabular}{rl}
+\small{}	\textsc{	MS, Electrical \& Computer engineering \small {(3.41/4)}		} 	& 		\textsc{	Dec-17 	\faGraduationCap		}	\\
+ 		\textsc{	Tandon School of Engineering, New York University \nyu\;		}	& 												\\
+ \small{}	\textsc{	BE, Instrumentation \small{\&} Controls, \small {(7.04/10)}		} 	& 		\textsc{	Jun-14	\faGraduationCap		}	\\
+ 		\textsc{	SVIT, Gujarat Technological University					}	& 												\\
+\end{tabular}
+
+
+
+
+%Section: Technical Skills--------------------------------------
+\vspace{-0.7em} % adjust value until it looks balanced
+\section{\hfill \textbf{SKILLS}}
+	\begin{tabular}{rl}	\small{}
+	 	\small{}\textsc{		Computer Programming:	}	& \textsc{					\small{c/c\texttt{++}/cs}, java (desktop \& web), git, Python (AI-Automation tools, limited hands-on coding),			}	\\
+  												& \textsc{					web(html, css, js), desktop(javaFx, awt)							} 	\\
+ 		\small{}\textsc{		Automation:			}	& \textsc{					micro-controllers \& single board computers,						}	\\
+  												& \textsc{					PLCs(ladder-logic, FBD), hmi/scada								} 	\\
+ 		\small{}\textsc{		Industries served:		}	& \textsc{					machineries, manufacturing, control panels, solar energy,				}	\\
+  												& \textsc{					Education													} 	\\
+	\end{tabular}
+
+%Section: Work--------------------------------------
+\vspace{-0.7em} % adjust value until it looks balanced
+\section{\hfill \textbf{PROFESSIONAL EXPERIENCE}}
+
+
+
+
+
+\newcommand{\mysymbol}{%
+  \mathbin{%
+    \begin{tikzpicture}[baseline=-0.5ex, scale=0.12]
+      \draw (0,0) -- (0,2);
+      \draw (0,2) -- (2,2);
+      \draw (2,2) -- (2,0);
+      \draw (2,0) -- (0,0);
+      \draw (0,1) -- (1,2);
+      \draw (1,2) -- (2,1);
+      \draw (2,1) -- (1,0);
+      \draw (1,0) -- (0,1);
+      \draw (0,0) -- (2,2);
+      \draw (2,0) -- (0,2);
+    \end{tikzpicture}%
+  }%
+}
+
+\noindent
+\colorbox{gray!15}{
+    \parbox[c][0.8em][c]{\linewidth}{   % <— controls height
+        {\large \faBriefcase\; \uic\; \textsc{Software Engineer III - Automation, Universal Instruments, NY}}
+        \hfill \emph{Sep 22 - present}
+    }
+}
+\begin{tabular}{r p{0.9\linewidth}}
+\textbullet	&		{\fontspec{Inter}	Developing and maintaining \textbf{Fuzion} platform software on regular basis.																							}	\\
+\textbullet	&		{\fontspec{Inter}	Engineered \textbf{SBS (Side Barcode Scanning)} using Keyence SR‑X300 with Live View, traceability, error recovery and multi‑bank support for Connectors with barcodes on side of the body.	}	\\		
+\textbullet	&		{\fontspec{Inter}	Upgraded existing \textbf{AMS} process from single point to 13-locations for higher accuracy on wafer.																		}	\\
+\textbullet	&		{\fontspec{Inter}	Built a \textbf{wafer‑to‑board mapping} system that converts customer wafer map formats into Universal Fuzion board template files for direct use in production.									}	\\
+\textbullet	&		{\fontspec{Inter}	Developed \textbf{Selective Placement} with parts buffering, DFF‑based Patch \& Interposer categories, and avoiding-priority rules for optimal patch‑interposer matching.						}	\\
+\textbullet	&		{\fontspec{Inter}	Implemented \textbf{AVP} to allow user-defined fiducial finds during ECS, NPI and Production flows.																			}	\\
+\textbullet	&		{\fontspec{Inter}	Integrated Cognex QuickBuild (VPP) with \textbf{MCOS↔QBIT} TCP/IP triggers and full reject/retry handling, enabling Dispense Quality Inspection on the Fuzion Precision‑Bonder platform.		}	\\
+\textbullet	&		{\fontspec{Inter}	Built a CS \textbf{Light Intensity Controller} software with multi‑channel control, network connectivity and controller discovery for illumination management.								}	\\
+\textbullet	&		{\fontspec{Inter}	Implemented \textbf{nested-tray} support for Multi‑Rot feeders.																										}	\\
+\textbullet	&		{\fontspec{Inter}	Added \textbf{isosceles triangle} fiducial support.																												}	\\
+\textbullet	&		{\fontspec{Inter}	Implemented configurable \textbf{park‑position} on Fuzion platform.																									}	\\
+\textbullet	&		{\fontspec{Inter}	Tech-stack  : · CS · C · CPP · Git · VxWorks · Sourcetree.																											}	\\
+
+\end{tabular}\\
+
+%\rule{\linewidth}{0.01pt}  % ← very thin line
+
+\begin{spacing}{0.4}
+\end{spacing}
+
+%
+
+
+\noindent
+\colorbox{gray!15}{
+    \parbox[c][0.6em][c]{\linewidth}{
+        \faBriefcase\;\textsc{Automation Engineer	, Nor-Cal controls, Ca}
+        \hfill \emph{Jan - Jul 22}
+    }
+}
+{\color{previousWork}
+\begin{tabular}{r p{0.9\linewidth}}
+$\circ$	&	{\fontspec{Inter}	Developed automation software for utility‑scale solar power plants											}	\\
+$\circ$	&	{\fontspec{Inter}	Tech stack: Ignition SCADA · GE PLC · SEL‑RTAC · Red Lion												}	\\
+\end{tabular}\\
+}
+		
+
+		
+%
+\begin{spacing}{0.4}
+\end{spacing}
+\noindent
+\colorbox{gray!15}{
+    \parbox[c][0.6em][c]{\linewidth}{
+        \faBriefcase\;\textsc{Software Engineer - Machine Automation, Mini-Circuits, NY}
+        \hfill \emph{Feb 18 - Nov 21}
+    }
+}
+{\color{previousWork}
+\begin{tabular}{r p{0.95\linewidth}}
+$\circ$	&	{\fontspec{Inter}	Developed and maintained software for pick‑and‑place rotary machines with computer vision inspection.				}	\\
+$\circ$	&	{\fontspec{Inter}	Implemented Reverse motion on rotary machines with Pressing-arm to enable EVT testing.		}	\\
+$\circ$	&	{\fontspec{Inter}	Implemented the new shopping cart system for the online store \href{https://www.minicircuits.com/}{https://www.minicircuits.com/}	}	\\
+$\circ$	&	{\fontspec{Inter}	Developed enterprise application software for internal engineering teams.												}	\\
+$\circ$	&	{\fontspec{Inter}	Tech stack: Java · JavaFX · HTML · CSS · JavaScript															}	\\
+\end{tabular}\\
+}		
+
+%
+\begin{spacing}{0.4}
+\end{spacing}
+\noindent
+\colorbox{gray!15}{
+    \parbox[c][0.6em][c]{\linewidth}{
+        \faBriefcase\;\textsc{Design Engineer, Prima Automation, IN}
+        \hfill \emph{Jun 14 - Jan 16}
+    }
+}
+{\color{previousWork}
+\begin{tabular}{r p{0.9\linewidth}}
+$\circ$	&	{\fontspec{Inter}	Programmed Siemens PLCs in TIA Portal and developed HMI interfaces for industrial automation.											}	\\
+$\circ$	&	{\fontspec{Inter}	Designed electrical and control panels using AutoCAD.																										}	\\
+$\circ$	&	{\fontspec{Inter}	Created detailed electrical schematics and wiring diagrams using E‑plan.																										}	\\
+\end{tabular}\\
+}
+
+
+%Section: Work--------------------------------------
+\vspace{-0.7em} % adjust value until it looks balanced
+\section{\hfill \textbf{ACADEMIC WORK EXPERIENCE}}
+
+		
+%
+\begin{spacing}{0.8}
+\end{spacing}
+
+\noindent
+\colorbox{gray!15}{
+    \parbox[c][0.6em][c]{\linewidth}{
+        \faBriefcase\;\textsc{Developer Intern, RevMax Fleet Optimization, NY}
+        \hfill \emph{Sep - Dec 17}
+    }
+}
+{\color{previousWork}
+\begin{tabular}{r p{0.9\linewidth}}
+$\circ$	&	{\fontspec{Inter}	Developed firmware for the SidewalkIQ sensor using Doppler radar to monitor sidewalk activity.			}	\\
+$\circ$	&	{\fontspec{Inter}	Deployed sensors at multiple NYC locations and validated field performance							}	\\
+$\circ$	&	{\fontspec{Inter}	Conducted R\&D to improve data consistency and optimize storage and transfer to backend servers.			}	\\
+$\circ$	&	{\fontspec{Inter}	Tech stack : · Arduino-C ·																	}	\\
+\end{tabular}\\
+}
+
+
+%
+\begin{spacing}{0.4}
+\end{spacing}
+\noindent
+\colorbox{gray!15}{
+    \parbox[c][0.6em][c]{\linewidth}{
+        \faBriefcase\;\textsc{Instructor (ITEST Program), robotics \& mechatronics dpt., NYU}
+        \hfill \emph{Sep - Dec 17}
+    }
+}
+{\color{previousWork}
+\begin{tabular}{r p{0.9\linewidth}}
+$\circ$	&	{\fontspec{Inter}	Mentored to Robotics Club Programming Team for competitions (First Robotics \& Vex Robotics).							}	\\
+$\circ$	&	{\fontspec{Inter}	Taught concepts of Computer Programming to Robotics Club Team.															}	\\
+\end{tabular}\\
+}
+%
+\begin{spacing}{0.4}
+\end{spacing}
+\noindent
+\colorbox{gray!15}{
+    \parbox[c][0.6em][c]{\linewidth}{
+        \faBriefcase\;\textsc{Lead Instructor (CREST Program), Center for K12 STEM Education, NYU}
+        \hfill \emph{May - Aug 17}
+    }
+}
+{\color{previousWork}
+\begin{tabular}{r p{0.95\linewidth}}
+$\circ$	&	{\fontspec{Inter}	Mentored high‑school interns in Arduino, IoT, robotics, and 3D printing \& led STEM projects including:												}	\\
+		&	-{\fontspec{Inter}	\textsc{Autonomous Car (Mouse in a Maze)} - STM32 Board: \href{https://github.com/sap586/RTES_Project}{https://github.com/sap586/RTES\_Project}			}	\\
+		&	-{\fontspec{Inter}	\textsc{Wireless Robot Controller} - Arduino: \href{https://github.com/sap586/WirelessRobotDay5Activity}{https://github.com/sap586/WirelessRobotDay5Activity}	}	\\
+\end{tabular}\\
+}
+
+
+
+
+
+%
+
+
+%\par	{\hfill
+%	{where music meets software, checkout my new project : \href{https://sap586.github.io/beep/}{beepBox} (inspired from https://www.beepbox.co/)}																														\\
+%		\par}
+		
+		
+\hrule
+\vspace{-0.5em} % adjust value until it looks balanced
+\small 	{	\hfill {This document is prepared using \LaTeX. Click \href{https://raw.githubusercontent.com/sap586/Resume/master/sap586.tex}{here} to download the source code.}
 
 \end{document}
