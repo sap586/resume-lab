@@ -12,10 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Compile LaTeX
+      - name: Compile XeLaTeX
         uses: xu-cheng/latex-action@v3
         with:
           root_file: tex/document.tex
+          latexmk_use_xelatex: true
 
       - name: List generated files
         run: |
