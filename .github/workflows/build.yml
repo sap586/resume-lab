@@ -1,0 +1,34 @@
+name: Build PDF
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: tex/document.tex
+
+      - name: Copy PDF to Pages folder
+        run: |
+          cp tex/document.pdf docs/document.pdf
+
+      - name: Commit generated PDF
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add docs/document.pdf
+          git commit -m "Auto-generate PDF" || exit 0
+          git push
