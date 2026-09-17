@@ -1,0 +1,21 @@
+name: Build Resume From JSON
+on:
+  push:
+    paths:
+      - "data/**"
+      - "templates/**"
+      - "scripts/**"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install jinja2
+      - run: python scripts/generate_tex.py
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: generated/resume.tex
+      - uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: generated/*.pdf
