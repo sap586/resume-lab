@@ -1,0 +1,1 @@
+function downloadJson(){const t=document.getElementById("json").value;const b=new Blob([t],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="resume.json";a.click();}
