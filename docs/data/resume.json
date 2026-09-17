@@ -1,0 +1,15 @@
+{
+  "resumeType": "software",
+  "profile": {
+    "name": "Sagar Panchal",
+    "email": "sap586@nyu.edu",
+    "phone": "+1 (607) 314-0114",
+    "location": "Binghamton, NY"
+  },
+  "education": [{
+    "degree": "MS Electrical & Computer Engineering",
+    "school": "New York University",
+    "year": "2017"
+  }],
+  "experience": []
+}

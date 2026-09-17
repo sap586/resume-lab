@@ -1,0 +1,229 @@
+{
+  "profile": {
+    "name": "Sagar Panchal",
+    "email": "sap586@nyu.edu",
+    "phone": "+1 (607) 314-0114",
+    "location": "Binghamton, NY"
+  },
+  "experience": [
+    {
+      "company": "Universal Instruments",
+      "title": "Software Engineer III - Automation",
+      "start": "Sep 2022",
+      "end": "Present",
+      "bullets": [
+        {
+          "text": "Developing and maintaining Fuzion platform software.",
+          "tags": [
+            "software"
+          ]
+        },
+        {
+          "text": "Engineered SBS barcode scanning using Keyence SR-X300.",
+          "tags": [
+            "software",
+            "robotics"
+          ]
+        },
+        {
+          "text": "Upgraded AMS from single point to 13 locations.",
+          "tags": [
+            "software",
+            "robotics"
+          ]
+        },
+        {
+          "text": "Built wafer-to-board mapping system.",
+          "tags": [
+            "software",
+            "architect"
+          ]
+        },
+        {
+          "text": "Developed Selective Placement logic.",
+          "tags": [
+            "software",
+            "architect"
+          ]
+        },
+        {
+          "text": "Implemented AVP fiducial workflow.",
+          "tags": [
+            "software"
+          ]
+        },
+        {
+          "text": "Integrated Cognex QuickBuild with MCOS and QBIT workflows.",
+          "tags": [
+            "software",
+            "robotics",
+            "architect"
+          ]
+        },
+        {
+          "text": "Built light intensity controller software.",
+          "tags": [
+            "software",
+            "robotics"
+          ]
+        },
+        {
+          "text": "Implemented nested tray support.",
+          "tags": [
+            "robotics"
+          ]
+        },
+        {
+          "text": "Added isosceles triangle fiducial support.",
+          "tags": [
+            "robotics"
+          ]
+        },
+        {
+          "text": "Implemented configurable park position.",
+          "tags": [
+            "software"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Nor-Cal Controls",
+      "title": "Automation Engineer",
+      "start": "Jan 2022",
+      "end": "Jul 2022",
+      "bullets": [
+        {
+          "text": "Developed automation software for utility-scale solar plants.",
+          "tags": [
+            "software",
+            "robotics"
+          ]
+        },
+        {
+          "text": "Worked with Ignition SCADA, GE PLC, SEL-RTAC and Red Lion systems.",
+          "tags": [
+            "robotics",
+            "architect"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Mini-Circuits",
+      "title": "Software Engineer - Machine Automation",
+      "start": "Feb 2018",
+      "end": "Nov 2021",
+      "bullets": [
+        {
+          "text": "Developed software for pick-and-place rotary machines.",
+          "tags": [
+            "software",
+            "robotics"
+          ]
+        },
+        {
+          "text": "Implemented reverse motion functionality for EVT testing.",
+          "tags": [
+            "robotics"
+          ]
+        },
+        {
+          "text": "Implemented new shopping cart system for online store.",
+          "tags": [
+            "software"
+          ]
+        },
+        {
+          "text": "Built enterprise applications for engineering teams.",
+          "tags": [
+            "software",
+            "architect"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Prima Automation",
+      "title": "Design Engineer",
+      "start": "Jun 2014",
+      "end": "Jan 2016",
+      "bullets": [
+        {
+          "text": "Programmed Siemens PLCs and HMIs.",
+          "tags": [
+            "robotics"
+          ]
+        },
+        {
+          "text": "Designed electrical and control panels.",
+          "tags": [
+            "architect"
+          ]
+        },
+        {
+          "text": "Created electrical schematics using E-Plan.",
+          "tags": [
+            "architect"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "RevMax Fleet Optimization",
+      "title": "Developer Intern",
+      "start": "Sep 2017",
+      "end": "Dec 2017",
+      "bullets": [
+        {
+          "text": "Developed SidewalkIQ sensor firmware.",
+          "tags": [
+            "software",
+            "robotics"
+          ]
+        },
+        {
+          "text": "Deployed sensors across New York City.",
+          "tags": [
+            "robotics"
+          ]
+        },
+        {
+          "text": "Improved data consistency and backend transfers.",
+          "tags": [
+            "software",
+            "architect"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "NYU STEM Programs",
+      "title": "Instructor / Lead Instructor",
+      "start": "2017",
+      "end": "2017",
+      "bullets": [
+        {
+          "text": "Mentored robotics teams and programming students.",
+          "tags": [
+            "management",
+            "robotics"
+          ]
+        },
+        {
+          "text": "Led STEM projects and mentored interns.",
+          "tags": [
+            "management"
+          ]
+        },
+        {
+          "text": "Taught Arduino, IoT and robotics concepts.",
+          "tags": [
+            "management",
+            "robotics"
+          ]
+        }
+      ]
+    }
+  ]
+}
