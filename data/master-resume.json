@@ -59,6 +59,24 @@
           ]
         }
       ]
+    },
+    {
+      "company": "Universal Instruments, NY",
+      "title": "Software Engineer III - Automation",
+      "bullets": [
+        {
+          "text": "Development and Maintenance of Fuzion Platform Software",
+          "tags": [
+            "robotics"
+          ]
+        },
+        {
+          "text": "New Machine-features, onsite issue resolving, and installation support",
+          "tags": [
+            "robotics"
+          ]
+        }
+      ]
     }
   ]
 }
