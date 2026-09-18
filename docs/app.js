@@ -13,6 +13,156 @@ function updateStats(){
  document.getElementById('stats').innerHTML=`Companies: ${masterData.experience.length} | Bullets: ${bullets}`;
 }
 
+function setStatus(message) {
+    document.getElementById("status").innerText =
+        message;
+}
+
+function saveToken() {
+
+    const token =
+        document.getElementById("githubToken").value;
+
+    localStorage.setItem(
+        "resumeLabGithubToken",
+        token
+    );
+
+    setStatus(
+        "GitHub token saved."
+    );
+}
+
+function getToken() {
+
+    return localStorage.getItem(
+        "resumeLabGithubToken"
+    );
+}
+
+async function getResumeFileInfo() {
+
+    const token = getToken();
+
+    const response =
+        await fetch(
+            "https://api.github.com/repos/sap586/resume-lab/contents/data/master-resume.json",
+            {
+                headers: {
+                    Authorization:
+                        `Bearer ${token}`
+                }
+            }
+        );
+
+    return await response.json();
+}
+
+async function saveResumeToGithub() {
+
+    const token = getToken();
+
+    const file =
+        await getResumeFileInfo();
+
+    const content =
+        btoa(
+            unescape(
+                encodeURIComponent(
+                    JSON.stringify(
+                        masterData,
+                        null,
+                        2
+                    )
+                )
+            )
+        );
+
+    const response =
+        await fetch(
+            "https://api.github.com/repos/sap586/resume-lab/contents/data/master-resume.json",
+            {
+                method: "PUT",
+
+                headers: {
+                    Authorization:
+                        `Bearer ${token}`,
+
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    message:
+                        "Update resume from Resume CMS",
+
+                    content,
+
+                    sha: file.sha
+                })
+            }
+        );
+
+    return await response.json();
+}
+
+async function triggerBuild() {
+
+    const token = getToken();
+
+    await fetch(
+        "https://api.github.com/repos/sap586/resume-lab/actions/workflows/build-from-json.yml/dispatches",
+        {
+            method: "POST",
+
+            headers: {
+                Authorization:
+                    `Bearer ${token}`,
+
+                "Content-Type":
+                    "application/json"
+            },
+
+            body: JSON.stringify({
+                ref: "main"
+            })
+        }
+    );
+}
+
+async function generatePdf() {
+
+    try {
+
+        setStatus(
+            "Saving resume..."
+        );
+
+        await saveResumeToGithub();
+
+        setStatus(
+            "Starting GitHub build..."
+        );
+
+        await triggerBuild();
+
+        setStatus(
+            "Build started. Wait about a minute, then open the PDF."
+        );
+
+    }
+    catch(error) {
+
+        console.error(error);
+
+        setStatus(
+            "Build failed."
+        );
+    }
+}
+
+
 function render(){
  const jobs=document.getElementById('jobs');
  jobs.innerHTML='';
