@@ -1,12 +1,6 @@
 name: Build Resume From JSON
 
 on:
-  push:
-    paths:
-      - "data/**"
-      - "templates/**"
-      - "scripts/**"
-
   workflow_dispatch:
 
 jobs:
