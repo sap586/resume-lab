@@ -52,6 +52,14 @@ jobs:
       - name: Create PDF Directory
         run: mkdir -p docs/pdfs
 
+        - name: Debug Generated Files
+        run: |
+          echo "===== GENERATED ====="
+          find generated -type f || true
+
+          echo "===== ALL PDFS ====="
+          find . -name "*.pdf" || true
+
       - name: Publish PDFs To GitHub Pages
         run: cp generated/*.pdf docs/pdfs/
 
