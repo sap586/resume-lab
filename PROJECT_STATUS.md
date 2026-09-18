@@ -1,10 +1,12 @@
-# Resume Lab - Project Status
+# Resume Lab - Project Status & Handoff
 
-Repository
+**Date:** 2026-09-18
+
+## Repository
 
 https://github.com/sap586/resume-lab
 
-GitHub Pages
+## GitHub Pages
 
 https://sap586.github.io/resume-lab/
 
@@ -12,351 +14,463 @@ https://sap586.github.io/resume-lab/
 
 # Original Goal
 
-Create a web-based resume builder that allows resume editing and PDF generation from any device without requiring:
+Build a browser-based Resume CMS that allows:
 
-- Personal computer
-- MiKTeX
-- TeX Live
-- Local LaTeX installation
-
-Desired workflow:
-
-Resume CMS
-    ↓
-Select Resume Type
+```text
+Edit Resume
     ↓
 Generate PDF
     ↓
 Download PDF
+```
+
+without requiring:
+
+- Local PC
+- MiKTeX
+- TeX Live
+- Local LaTeX installation
+
+Everything should work from:
+
+- Phone
+- Tablet
+- Browser
 
 ---
 
-# Completed
+# Current Status
 
 ## Infrastructure
 
-✅ GitHub Repository Created
+Completed.
 
-✅ GitHub Pages Enabled
-
-✅ GitHub Actions Working
-
-✅ XeLaTeX Working
-
-✅ Existing Resume PDF Successfully Generated Through GitHub Actions
-
-✅ Existing document.tex Successfully Compiles On GitHub
-
----
-
-## Resume CMS
-
-✅ GitHub Pages Resume CMS Created
-
-✅ Master Resume Database Created
-
-✅ Tag-Based Resume Filtering Implemented
-
-✅ Resume Types
-
-- Software
-- Robotics
-- Architect
-- Management
+```text
+✅ GitHub Repository
+✅ GitHub Pages
+✅ GitHub Actions
+✅ XeLaTeX
+✅ PDF Generation
+✅ PDF Publishing
+✅ GitHub API Integration
+✅ PAT Authentication
+```
 
 ---
 
-## Editing Features
+# Resume CMS
 
+Completed.
+
+## Editing
+
+```text
 ✅ Edit Company
-
 ✅ Edit Position
-
 ✅ Edit Bullet
-
 ✅ Add Company
-
 ✅ Delete Company
-
 ✅ Add Bullet
-
 ✅ Delete Bullet
-
-✅ Tag Editor
-
-Tags:
-
-- software
-- robotics
-- architect
-- management
+✅ Edit Tags
+```
 
 ---
 
-## Export Features
+## Resume Types
 
-✅ Download Master JSON
+```text
+✅ Software
+✅ Robotics
+✅ Architect
+✅ Management
+```
 
-✅ Download Filtered JSON
+---
+
+# Tag Behavior
+
+Final behavior:
+
+```text
+Checkbox Checked
+    ↓
+Tag Added
+
+Checkbox Unchecked
+    ↓
+Tag Removed
+
+Delete Bullet
+    ↓
+Bullet Deleted
+```
+
+Important:
+
+```text
+No automatic deletion.
+No automatic hiding.
+```
+
+Editor always displays the full master resume.
+
+Filtering happens only during PDF generation.
+
+---
+
+# Current User Workflow
+
+```text
+Open Resume CMS
+      ↓
+Edit Resume
+      ↓
+Select Resume Type
+      ↓
+Generate PDF
+      ↓
+Save Resume To GitHub
+      ↓
+Trigger GitHub Action
+      ↓
+Generate PDF
+      ↓
+Publish To GitHub Pages
+      ↓
+Download PDF
+```
+
+---
+
+# GitHub Authentication
+
+Implemented.
+
+## PAT Storage
+
+Stored in browser localStorage.
+
+Key:
+
+```javascript
+resumeLabGithubToken
+```
+
+Token entered once via:
+
+```text
+GitHub Settings
+  ↓
+GitHub PAT
+  ↓
+Save Token
+```
+
+---
+
+# GitHub Workflow Status
+
+## Removed
+
+Deleted:
+
+```text
+.github/workflows/build.yml
+.github/workflows/sync-json-step.yml
+```
+
+Reason:
+
+```text
+Obsolete legacy workflows
+```
+
+---
+
+## Active Workflow
+
+File:
+
+```text
+.github/workflows/build-from-json.yml
+```
+
+Trigger:
+
+```yaml
+on:
+  workflow_dispatch:
+```
+
+Only.
+
+The workflow is triggered by the CMS Generate PDF button.
+
+---
+
+## GitHub Pages
+
+Still active:
+
+```text
+pages-build-deployment
+```
+
+Required.
+
+Do NOT remove.
+
+---
+
+# Important Discovery
+
+Original workflow attempted:
+
+```yaml
+cp generated/*.pdf docs/pdfs/
+```
+
+Failure:
+
+```text
+generated/*.pdf did not exist
+```
+
+Debug output showed:
+
+```text
+./software.pdf
+./robotics.pdf
+./architect.pdf
+./management.pdf
+```
+
+PDFs are generated in repository root.
+
+Workflow was corrected to copy:
+
+```yaml
+cp software.pdf docs/pdfs/
+cp robotics.pdf docs/pdfs/
+cp architect.pdf docs/pdfs/
+cp management.pdf docs/pdfs/
+```
+
+Artifacts were updated similarly.
 
 ---
 
 # Current Architecture
 
+```text
 master-resume.json
         ↓
 Resume CMS
         ↓
-Filter By Tags
+Generate PDF Button
         ↓
-Filtered Resume JSON
-
-PDF generation is connected through the GitHub Actions workflow. The website editor and PDF workflow are still separate.
-
----
-
-# Current Repository Structure
-
-resume-lab/
-
-.github/
-└── workflows/
-    ├── build.yml
-    └── build-from-json.yml
-
-docs/
-├── index.html
-├── app.js
-├── styles.css
-│
-├── data/
-│   ├── master-resume.json
-│   └── resume.json
-
-data/
-├── master-resume.json
-└── resume.json
-
-generated/
-
-scripts/
-└── generate_tex.py
-
-templates/
-├── software.tex.j2
-├── robotics.tex.j2
-├── architect.tex.j2
-└── management.tex.j2
-
-tex/
-├── document.tex
-├── NYU.png
-└── UIC.png
-
----
-
-# Important GitHub Pages Discovery
-
-GitHub Pages only serves files that exist inside:
-
-docs/
-
-Therefore:
-
-docs/data/master-resume.json
-
-must exist.
-
-Current app.js fetches:
-
-fetch('./data/master-resume.json')
-
-NOT:
-
-fetch('../data/master-resume.json')
-
----
-
-# Current Website State
-
-Website:
-
-https://sap586.github.io/resume-lab/
-
-Capabilities:
-
-✅ Statistics
-
-Companies Count
-
-Bullets Count
-
-✅ Resume Type Selector
-
-Software
-
-Robotics
-
-Architect
-
-Management
-
-✅ Edit Bullet Text
-
-✅ Edit Company
-
-✅ Edit Position
-
-✅ Modify Tags
-
-✅ Add/Delete Bullet
-
-✅ Add/Delete Company
-
-✅ Download Master JSON
-
-✅ Download Filtered JSON
-
----
-
-# Master Resume Database
-
-Current companies:
-
-1. Universal Instruments
-
-2. Nor-Cal Controls
-
-3. Mini-Circuits
-
-4. Prima Automation
-
-5. RevMax Fleet Optimization
-
-6. NYU STEM Programs
-
-Each bullet contains tags.
-
-Example:
-
-{
-  "text": "Built wafer-to-board mapping system",
-  "tags": [
-    "software",
-    "architect"
-  ]
-}
-
-Filtering logic:
-
-Software Resume:
-    software-tagged bullets
-
-Robotics Resume:
-    robotics-tagged bullets
-
-Architect Resume:
-    architect-tagged bullets
-
-Management Resume:
-    management-tagged bullets
-
----
-
-# Existing Resume Template
-
-Current LaTeX template:
-
-tex/document.tex
-
-IMPORTANT:
-
-Do not redesign the resume.
-
-Reuse the exact existing format.
-
-Preserve:
-
-- Layout
-- Styling
-- Icons
-- Images
-- Sections
-- Fonts
-- Header
-
----
-
-# PDF Generation Pipeline
-
-Connect:
-
-master-resume.json
+GitHub API
         ↓
-Filtered Resume
+Save master-resume.json
         ↓
-Existing LaTeX Template
+workflow_dispatch
+        ↓
+build-from-json.yml
         ↓
 XeLaTeX
         ↓
-PDF
+software.pdf
+robotics.pdf
+architect.pdf
+management.pdf
+        ↓
+docs/pdfs
+        ↓
+GitHub Pages
+```
 
 ---
 
-# Completed Phase 8
+# Current State
 
-The new generator:
+Platform is effectively complete.
 
-master-resume.json
+Implemented:
 
-filters bullets by tag and creates:
+```text
+✅ Browser Editing
+✅ GitHub Save
+✅ GitHub Action Triggering
+✅ PDF Generation
+✅ PDF Publishing
+✅ GitHub Pages Download
+```
 
+---
+
+# Remaining Work
+
+## Only Major Item Left
+
+### Problem
+
+Generated PDF does NOT visually match the original resume.
+
+---
+
+## Current Generated PDF
+
+Characteristics:
+
+```text
+Simple layout
+Basic sections
+Minimal formatting
+Standard LaTeX appearance
+```
+
+---
+
+## Original Resume
+
+File source:
+
+```text
+tex/document.tex
+```
+
+Characteristics:
+
+```text
+Custom header
+About section
+Education table
+Skills section
+Professional spacing
+Icons
+University logos
+Dense formatting
+Resume-specific layout
+```
+
+---
+
+# Goal
+
+Do NOT redesign the resume.
+
+Instead:
+
+```text
+Reuse original design exactly.
+```
+
+Target:
+
+```text
+tex/document.tex
+        ↓
+Convert to Jinja template
+        ↓
 templates/resume.tex.j2
+        ↓
+Populate from
+master-resume.json
+        ↓
+Generate PDFs
+```
 
-The workflow compiles four outputs:
+---
+
+# Preserve Exactly
+
+Must preserve:
+
+```text
+Header Layout
+Fonts
+Margins
+Spacing
+About Section
+Education Section
+Skills Section
+Experience Layout
+Section Styling
+Icons
+University Logos
+Overall Visual Design
+```
+
+---
+
+# Next Copilot Session
+
+Request:
+
+```text
+Review tex/document.tex.
+
+Convert tex/document.tex into a Jinja2 template.
+
+Preserve the exact visual design.
+
+Replace hardcoded content with Jinja variables.
+
+Use master-resume.json as the single data source.
+
+Generate:
 
 software.pdf
-
 robotics.pdf
-
 architect.pdf
-
 management.pdf
 
-Text is escaped for LaTeX before rendering. The generated template is portable and functional; exact visual parity with tex/document.tex remains a follow-up task.
+Goal:
 
-# Remaining Product Work
-
-The website editor runs in the browser. Download the updated master JSON, replace data/master-resume.json, and push the change. GitHub Actions then rebuilds and publishes the four PDFs in docs/pdfs/.
-
----
-
-# End Goal
-
-From:
-
-https://sap586.github.io/resume-lab/
-
-User should be able to:
-
-1. Edit resume data
-
-2. Edit tags
-
-3. Choose resume type
-
-4. Generate PDF
-
-5. Download PDF
-
-without requiring:
-
-- Home computer
-- MiKTeX
-- TeX Live
+Generated PDFs should be visually identical to the original manually-maintained resume.
+```
 
 ---
 
-# Instructions For Next Copilot Session
+# Definition of Done
 
-Focus on the website save workflow and the user-facing PDF download experience. Preserve the existing resume design when improving the template.
+```text
+Open Resume CMS
+      ↓
+Edit Resume
+      ↓
+Generate PDF
+      ↓
+GitHub Action
+      ↓
+PDF Published
+```
+
+AND
+
+```text
+Generated PDF visually matches original resume design.
+```
+
+---
+
+# Project Completion Estimate
+
+```text
+Infrastructure            100%
+CMS                       100%
+GitHub Integration        100%
+PDF Generation            100%
+PDF Publishing            100%
+Workflow Automation       100%
+Resume Design Parity       10%
+```
+
+## Remaining Effort
+
+```text
+Convert original LaTeX design into Jinja template.
+
+This is the final significant task.
+```
