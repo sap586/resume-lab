@@ -6,24 +6,48 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
 <h1>Resume CMS</h1>
+
 <div id="stats"></div>
 
-<label>Resume Type</label>
-<select id="resumeType">
-<option value="software">Software</option>
-<option value="robotics">Robotics</option>
-<option value="architect">Architect</option>
-<option value="management">Management</option>
-</select>
+<h2>GitHub Settings</h2>
 
-<button onclick="addCompany()">Add Company</button>
+<input
+    id="githubToken"
+    type="password"
+    placeholder="GitHub Personal Access Token">
+
+<button onclick="saveToken()">
+    Save Token
+</button>
+
+<div id="status"></div>
 
 <hr>
-<h2>Resume PDF</h2>
-<button onclick="downloadCurrentPdf()">Download Current PDF</button>
+
+<label>Resume Type</label>
+
+<select id="resumeType">
+    <option value="software">Software</option>
+    <option value="robotics">Robotics</option>
+    <option value="architect">Architect</option>
+    <option value="management">Management</option>
+</select>
+
+<button onclick="addCompany()">
+    Add Company
+</button>
+
+<button onclick="generatePdf()">
+    Generate PDF
+</button>
+
+<hr>
 
 <div id="jobs"></div>
+
 <script src="app.js"></script>
+
 </body>
 </html>
