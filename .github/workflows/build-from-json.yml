@@ -1,43 +1,68 @@
 name: Build Resume From JSON
+
 on:
   push:
     paths:
       - "data/**"
       - "templates/**"
       - "scripts/**"
+
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
+
     steps:
       - uses: actions/checkout@v4
-      - run: pip install jinja2
-      - run: python3 scripts/generate_resume_from_json.py
-      - name: Compile software resume
+
+      - name: Install Python Dependencies
+        run: pip install jinja2
+
+      - name: Generate LaTeX Files
+        run: python3 scripts/generate_resume_from_json.py
+
+      - name: Compile Software Resume
         uses: xu-cheng/latex-action@v3
         with:
           root_file: generated/software.tex
           latexmk_use_xelatex: true
-      - name: Compile robotics resume
+
+      - name: Compile Robotics Resume
         uses: xu-cheng/latex-action@v3
         with:
           root_file: generated/robotics.tex
           latexmk_use_xelatex: true
-      - name: Compile architect resume
+
+      - name: Compile Architect Resume
         uses: xu-cheng/latex-action@v3
         with:
           root_file: generated/architect.tex
           latexmk_use_xelatex: true
-      - name: Compile management resume
+
+      - name: Compile Management Resume
         uses: xu-cheng/latex-action@v3
         with:
           root_file: generated/management.tex
           latexmk_use_xelatex: true
-      - name: Publish PDFs to GitHub Pages files
+
+      - name: Create PDF Directory
+        run: mkdir -p docs/pdfs
+
+      - name: Publish PDFs To GitHub Pages
         run: cp generated/*.pdf docs/pdfs/
-      - name: Commit updated PDFs
+
+      - name: Commit Updated PDFs
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update generated resume PDFs
           file_pattern: docs/pdfs/*.pdf
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: generated/*.pdf
