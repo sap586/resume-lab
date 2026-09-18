@@ -5,7 +5,6 @@ async function init(){
  const r=await fetch('./data/master-resume.json');
  masterData=await r.json();
  render();
- updateStats();
 }
 
 function updateStats(){
@@ -17,74 +16,57 @@ function updateStats(){
 function render(){
  const jobs=document.getElementById('jobs');
  jobs.innerHTML='';
-
  masterData.experience.forEach((job,ji)=>{
   const div=document.createElement('div');
   div.className='job';
-
   let html=`<input type=text value="${job.company}" onchange="masterData.experience[${ji}].company=this.value"><br><input type=text value="${job.title}" onchange="masterData.experience[${ji}].title=this.value"><button onclick="deleteCompany(${ji})">Delete Company</button>`;
-
   job.bullets.forEach((b,bi)=>{
    html+=`<div class='bullet'><input type=text value="${b.text}" onchange="masterData.experience[${ji}].bullets[${bi}].text=this.value"><div class='tags'>`+
    TAGS.map(t=>`<label><input type='checkbox' ${b.tags.includes(t)?'checked':''} onchange='toggleTag(${ji},${bi},"${t}",this.checked)'>${t}</label>`).join('')+
    `</div><button onclick='deleteBullet(${ji},${bi})'>Delete Bullet</button></div>`;
   });
-
   html+=`<button onclick='addBullet(${ji})'>Add Bullet</button>`;
   div.innerHTML=html;
   jobs.appendChild(div);
  });
-
  updateStats();
 }
 
 function toggleTag(j,b,t,c){
  let bullet=masterData.experience[j].bullets[b];
- if(c){
-  if(!bullet.tags.includes(t)) bullet.tags.push(t);
- } else {
-  bullet.tags=bullet.tags.filter(x=>x!==t);
- }
+ if(c){if(!bullet.tags.includes(t)) bullet.tags.push(t);} else {bullet.tags=bullet.tags.filter(x=>x!==t);}
  render();
 }
 
-function addBullet(j){
- masterData.experience[j].bullets.push({text:'New Bullet',tags:[]});
- render();
-}
+function addBullet(j){masterData.experience[j].bullets.push({text:'New Bullet',tags:[]});render();}
+function deleteBullet(j,b){masterData.experience[j].bullets.splice(b,1);render();}
+function addCompany(){masterData.experience.push({company:'New Company',title:'New Position',bullets:[]});render();}
+function deleteCompany(i){masterData.experience.splice(i,1);render();}
 
-function deleteBullet(j,b){
- masterData.experience[j].bullets.splice(b,1);
- render();
-}
-
-function addCompany(){
- masterData.experience.push({company:'New Company',title:'New Position',bullets:[]});
- render();
-}
-
-function deleteCompany(i){
- masterData.experience.splice(i,1);
- render();
-}
-
-function downloadFile(obj,name){
- const a=document.createElement('a');
- a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));
- a.download=name;
- a.click();
-}
-
+function downloadFile(obj,name){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));a.download=name;a.click();}
 function downloadMasterJson(){downloadFile(masterData,'master-resume.json');}
 
 function downloadFilteredJson(){
  const tag=document.getElementById('resumeType').value;
  const out={profile:masterData.profile,resumeType:tag,experience:[]};
  masterData.experience.forEach(j=>{
-  const bullets=j.bullets.filter(b=>b.tags.includes(tag));
-  if(bullets.length) out.experience.push({...j,bullets});
+ const bullets=j.bullets.filter(b=>b.tags.includes(tag));
+ if(bullets.length) out.experience.push({...j,bullets});
  });
  downloadFile(out,tag+'-resume.json');
+}
+
+function openCurrentPdf(){
+ const type=document.getElementById('resumeType').value;
+ window.open('./pdfs/'+type+'.pdf','_blank');
+}
+
+function downloadCurrentPdf(){
+ const type=document.getElementById('resumeType').value;
+ const a=document.createElement('a');
+ a.href='./pdfs/'+type+'.pdf';
+ a.download=type+'.pdf';
+ a.click();
 }
 
 init();
