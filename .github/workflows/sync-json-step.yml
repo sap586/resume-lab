@@ -1,3 +1,0 @@
-- name: Sync JSON
-  run: |
-    cp data/master-resume.json docs/data/master-resume.json
