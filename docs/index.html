@@ -1,37 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Resume CMS</title>
-	<link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<title>Resume CMS</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-	<main>
-		<h1>Resume CMS</h1>
-		<p>Edit the master resume, then download the JSON file and commit it to the repository before rebuilding the PDFs.</p>
-		<div id="stats"></div>
-		<section class="toolbar">
-			<label for="resumeType">Resume Type</label>
-			<select id="resumeType" onchange="renderFiltered()">
-				<option value="software">Software</option>
-				<option value="robotics">Robotics</option>
-				<option value="architect">Architect</option>
-				<option value="management">Management</option>
-			</select>
-			<button onclick="addCompany()">Add Company</button>
-			<button onclick="downloadMasterJson()">Download Master JSON</button>
-			<button onclick="downloadFilteredJson()">Download Filtered JSON</button>
-		</section>
-		<section class="downloads">
-			<h2>Download PDFs</h2>
-			<a href="pdfs/software.pdf">Software PDF</a>
-			<a href="pdfs/robotics.pdf">Robotics PDF</a>
-			<a href="pdfs/architect.pdf">Architect PDF</a>
-			<a href="pdfs/management.pdf">Management PDF</a>
-		</section>
-		<div id="jobs"></div>
-	</main>
-	<script src="app.js"></script>
+<h1>Resume CMS</h1>
+<div id="stats"></div>
+<label>Resume Type</label>
+<select id="resumeType">
+<option value="software">Software</option>
+<option value="robotics">Robotics</option>
+<option value="architect">Architect</option>
+<option value="management">Management</option>
+</select>
+<button onclick="addCompany()">Add Company</button>
+<button onclick="downloadMasterJson()">Download Master JSON</button>
+<button onclick="downloadFilteredJson()">Download Filtered JSON</button>
+<div id="jobs"></div>
+<script src="app.js"></script>
 </body>
 </html>
