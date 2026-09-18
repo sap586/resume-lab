@@ -8,13 +8,39 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - run: pip install jinja2
-      - run: python scripts/generate_tex.py
-      - uses: xu-cheng/latex-action@v3
+      - run: python3 scripts/generate_resume_from_json.py
+      - name: Compile software resume
+        uses: xu-cheng/latex-action@v3
         with:
-          root_file: generated/resume.tex
+          root_file: generated/software.tex
+          latexmk_use_xelatex: true
+      - name: Compile robotics resume
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: generated/robotics.tex
+          latexmk_use_xelatex: true
+      - name: Compile architect resume
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: generated/architect.tex
+          latexmk_use_xelatex: true
+      - name: Compile management resume
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: generated/management.tex
+          latexmk_use_xelatex: true
+      - name: Publish PDFs to GitHub Pages files
+        run: cp generated/*.pdf docs/pdfs/
+      - name: Commit updated PDFs
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update generated resume PDFs
+          file_pattern: docs/pdfs/*.pdf
       - uses: actions/upload-artifact@v4
         with:
           name: resume-pdf

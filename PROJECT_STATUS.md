@@ -111,7 +111,7 @@ Filter By Tags
         ↓
 Filtered Resume JSON
 
-PDF generation not yet connected.
+PDF generation is connected through the GitHub Actions workflow. The website editor and PDF workflow are still separate.
 
 ---
 
@@ -287,7 +287,7 @@ Preserve:
 
 ---
 
-# Biggest Remaining Task
+# PDF Generation Pipeline
 
 Connect:
 
@@ -303,38 +303,31 @@ PDF
 
 ---
 
-# Next Phase (Phase 8)
+# Completed Phase 8
 
-Convert:
+The new generator:
 
-tex/document.tex
+master-resume.json
 
-into:
+filters bullets by tag and creates:
 
-templates/document.tex.j2
+templates/resume.tex.j2
 
-Create:
+The workflow compiles four outputs:
 
-scripts/generate_resume_from_json.py
-
-Goal:
-
-software-resume.json
-        ↓
-generate_resume_from_json.py
-        ↓
-generated/document.tex
-        ↓
-XeLaTeX
-        ↓
 software.pdf
 
-The same should work for:
+robotics.pdf
 
-- software.pdf
-- robotics.pdf
-- architect.pdf
-- management.pdf
+architect.pdf
+
+management.pdf
+
+Text is escaped for LaTeX before rendering. The generated template is portable and functional; exact visual parity with tex/document.tex remains a follow-up task.
+
+# Remaining Product Work
+
+The website editor runs in the browser. Download the updated master JSON, replace data/master-resume.json, and push the change. GitHub Actions then rebuilds and publishes the four PDFs in docs/pdfs/.
 
 ---
 
@@ -366,38 +359,4 @@ without requiring:
 
 # Instructions For Next Copilot Session
 
-Continue from:
-
-PHASE 8
-
-Reuse:
-
-tex/document.tex
-
-Do NOT redesign the resume.
-
-Focus ONLY on:
-
-master-resume.json
-        ↓
-document.tex.j2
-        ↓
-generate_resume_from_json.py
-        ↓
-GitHub Action
-        ↓
-PDF generation
-
-Ultimate goal:
-
-Generate:
-
-software.pdf
-
-robotics.pdf
-
-architect.pdf
-
-management.pdf
-
-from the same master-resume.json database.
+Focus on the website save workflow and the user-facing PDF download experience. Preserve the existing resume design when improving the template.

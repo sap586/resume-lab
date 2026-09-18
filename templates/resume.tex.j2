@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+\usepackage[left=0.55in,right=0.55in,top=0.45in,bottom=0.45in]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{array}
+\definecolor{linkcolour}{rgb}{0,0.2,0.6}
+\hypersetup{colorlinks=true,urlcolor=linkcolour,linkcolor=linkcolour}
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{7pt}{3pt}
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=1pt}
+\pagestyle{empty}
+
+\begin{document}
+\begin{center}
+    {\LARGE \textbf{ {{ profile.name|latex }} }}\\
+    \small \href{mailto:{{ profile.email|latex }}}{{ profile.email|latex }}
+    	extbullet\ {{ profile.phone|latex }}
+    	extbullet\ {{ profile.location|latex }}
+\end{center}
+
+{% if about %}\section*{ABOUT}
+{{ about|latex }}
+{% endif %}
+\section*{EDUCATION}
+{% for item in education %}
+	extbf{ {{ item.degree|latex }} } \hfill {{ item.year|latex }}\\
+{{ item.school|latex }}
+{% endfor %}
+
+\section*{PROFESSIONAL EXPERIENCE}
+{% for job in experience %}
+\noindent\textbf{ {{ job.title|latex }} } \hfill {{ job.start|latex }}{% if job.end %} -- {{ job.end|latex }}{% endif %}\\
+	extit{ {{ job.company|latex }} }
+\begin{itemize}
+{% for bullet in job.bullets %}
+    \item {{ bullet.text|latex }}
+{% endfor %}
+\end{itemize}
+{% endfor %}
+\end{document}
