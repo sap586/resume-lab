@@ -46,7 +46,7 @@ async function getResumeFileInfo() {
 
     const response =
         await fetch(
-            "https://api.github.com/repos/sap586/resume-lab/contents/data/master-resume.json",
+            "https://api.github.com/repos/sap586/resume-lab/contents/docs/data/master-resume.json",
             {
                 headers: {
                     Authorization:
@@ -80,7 +80,7 @@ async function saveResumeToGithub() {
 
     const response =
         await fetch(
-            "https://api.github.com/repos/sap586/resume-lab/contents/data/master-resume.json",
+            "https://api.github.com/repos/sap586/resume-lab/contents/docs/data/master-resume.json",
             {
                 method: "PUT",
 

@@ -41,7 +41,7 @@ def build_resume(master, resume_type):
 
 
 def generate(resume_type):
-    master_path = ROOT / "data" / "master-resume.json"
+    master_path = ROOT / "docs" / "data" / "master-resume.json"
     master = json.loads(master_path.read_text(encoding="utf-8"))
     environment = Environment(
         loader=FileSystemLoader(ROOT / "templates"),
