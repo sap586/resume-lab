@@ -162,6 +162,9 @@ async function generatePdf() {
     }
 }
 
+function openResume(type) {
+    window.open(`./pdfs/${type}.pdf`, "_blank");
+}
 
 function render(){
  const jobs=document.getElementById('jobs');
