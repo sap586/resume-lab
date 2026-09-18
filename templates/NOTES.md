@@ -1,0 +1,1 @@
+Convert tex/document.tex into templates/resume.tex.j2 and replace literal content with Jinja variables while preserving layout, fonts, icons, spacing and images.
