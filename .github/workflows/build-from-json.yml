@@ -56,7 +56,11 @@ jobs:
           find . -name "*.pdf" || true
 
       - name: Publish PDFs To GitHub Pages
-        run: cp generated/*.pdf docs/pdfs/
+        run: |
+          cp software.pdf docs/pdfs/
+          cp robotics.pdf docs/pdfs/
+          cp architect.pdf docs/pdfs/
+          cp management.pdf docs/pdfs/
 
       - name: Commit Updated PDFs
         uses: stefanzweifel/git-auto-commit-action@v5
@@ -68,4 +72,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: resume-pdf
-          path: generated/*.pdf
+          path: |
+            software.pdf
+            robotics.pdf
+            architect.pdf
+            management.pdf
