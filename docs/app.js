@@ -43,30 +43,9 @@ function deleteBullet(j,b){masterData.experience[j].bullets.splice(b,1);render()
 function addCompany(){masterData.experience.push({company:'New Company',title:'New Position',bullets:[]});render();}
 function deleteCompany(i){masterData.experience.splice(i,1);render();}
 
-function downloadFile(obj,name){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)],{type:'application/json'}));a.download=name;a.click();}
-function downloadMasterJson(){downloadFile(masterData,'master-resume.json');}
-
-function downloadFilteredJson(){
- const tag=document.getElementById('resumeType').value;
- const out={profile:masterData.profile,resumeType:tag,experience:[]};
- masterData.experience.forEach(j=>{
- const bullets=j.bullets.filter(b=>b.tags.includes(tag));
- if(bullets.length) out.experience.push({...j,bullets});
- });
- downloadFile(out,tag+'-resume.json');
-}
-
-function openCurrentPdf(){
- const type=document.getElementById('resumeType').value;
- window.open('./pdfs/'+type+'.pdf','_blank');
-}
-
 function downloadCurrentPdf(){
  const type=document.getElementById('resumeType').value;
- const a=document.createElement('a');
- a.href='./pdfs/'+type+'.pdf';
- a.download=type+'.pdf';
- a.click();
+ window.open('./pdfs/'+type+'.pdf','_blank');
 }
 
 init();
