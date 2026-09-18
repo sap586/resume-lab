@@ -41,7 +41,3 @@ jobs:
         with:
           commit_message: Update generated resume PDFs
           file_pattern: docs/pdfs/*.pdf
-      - uses: actions/upload-artifact@v4
-        with:
-          name: resume-pdf
-          path: generated/*.pdf
