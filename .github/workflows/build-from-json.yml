@@ -1,79 +1,54 @@
-name: Build Resume From JSON
+name: Build Resume PDF
 
 on:
   workflow_dispatch:
+    inputs:
+      pdf_name:
+        description: PDF file name (without .pdf)
+        required: true
+        type: string
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Python Dependencies
-        run: pip install jinja2
-
-      - name: Generate LaTeX Files
-        run: python3 scripts/generate_resume_from_json.py
-
-      - name: Compile Software Resume
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: generated/software.tex
-          latexmk_use_xelatex: true
-
-      - name: Compile Robotics Resume
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: generated/robotics.tex
-          latexmk_use_xelatex: true
-
-      - name: Compile Architect Resume
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: generated/architect.tex
-          latexmk_use_xelatex: true
-
-      - name: Compile Management Resume
-        uses: xu-cheng/latex-action@v3
-        with:
-          root_file: generated/management.tex
-          latexmk_use_xelatex: true
-
-      - name: Create PDF Directory
-        run: mkdir -p docs/pdfs
-
-      - name: Debug Generated Files
+      - name: Validate PDF name
+        env:
+          PDF_NAME: ${{ inputs.pdf_name }}
         run: |
-          echo "===== GENERATED ====="
-          find generated -type f || true
+          if [[ ! "$PDF_NAME" =~ ^[A-Za-z0-9][A-Za-z0-9_-]{0,79}$ ]]; then
+            echo "Invalid PDF name" >&2
+            exit 1
+          fi
 
-          echo ""
-          echo "===== ALL PDFS ====="
-          find . -name "*.pdf" || true
+      - name: Compile resume
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: tex/modifiable-about.tex
+          work_in_root_file_dir: true
+          latexmk_use_xelatex: true
 
-      - name: Publish PDFs To GitHub Pages
+      - name: Publish and archive resume
+        env:
+          PDF_NAME: ${{ inputs.pdf_name }}
         run: |
-          cp software.pdf docs/pdfs/
-          cp robotics.pdf docs/pdfs/
-          cp architect.pdf docs/pdfs/
-          cp management.pdf docs/pdfs/
+          mkdir -p docs/pdfs "output/${PDF_NAME}"
+          cp tex/modifiable-about.pdf "output/${PDF_NAME}/${PDF_NAME}.pdf"
+          cp tex/modifiable-about.tex "output/${PDF_NAME}/${PDF_NAME}.tex"
+          cp "output/${PDF_NAME}/${PDF_NAME}.pdf" "docs/pdfs/${PDF_NAME}.pdf"
 
-      - name: Commit Updated PDFs
+      - name: Commit resume files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Update generated resume PDFs
-          file_pattern: docs/pdfs/*.pdf
+          commit_message: Update resume PDF and source
+          file_pattern: docs/pdfs/*.pdf output/*/*.pdf output/*/*.tex
 
-      - name: Upload Artifacts
+      - name: Upload resume artifact
         uses: actions/upload-artifact@v4
         with:
-          name: resume-pdf
-          path: |
-            software.pdf
-            robotics.pdf
-            architect.pdf
-            management.pdf
+          name: resume-${{ inputs.pdf_name }}
+          path: output/${{ inputs.pdf_name }}/
