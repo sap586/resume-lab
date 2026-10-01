@@ -1,1 +1,1 @@
-Generated artifacts.
+Each build creates a folder named after the requested PDF, containing the named PDF and a complete copy of the TeX source used to compile it.
