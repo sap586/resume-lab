@@ -1,69 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Resume CMS</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resume Lab</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <main>
+        <header>
+            <h1>Resume Lab</h1>
+        </header>
+        <form id="resumeForm">
+            <label for="about">About</label>
+            <textarea id="about" rows="7" required aria-describedby="status"></textarea>
 
-<h1>Resume CMS</h1>
+            <label for="pdfName">PDF file name</label>
+            <div class="filename">
+                <input id="pdfName" type="text" placeholder="my-resume" required maxlength="84" autocomplete="off">
+                <span>.pdf</span>
+            </div>
 
-<div id="stats"></div>
+            <details>
+                <summary>GitHub access</summary>
+                <label for="githubToken">Personal access token</label>
+                <input id="githubToken" type="password" autocomplete="off" placeholder="Token with Contents and Actions write access">
+            </details>
 
-<h2>GitHub Settings</h2>
-
-<input
-    id="githubToken"
-    type="password"
-    placeholder="GitHub Personal Access Token">
-
-<button onclick="saveToken()">
-    Save Token
-</button>
-
-<div id="status"></div>
-
-<hr>
-
-<label>Resume Type</label>
-
-<select id="resumeType">
-    <option value="software">Software</option>
-    <option value="robotics">Robotics</option>
-    <option value="architect">Architect</option>
-    <option value="management">Management</option>
-</select>
-
-<button onclick="addCompany()">
-    Add Company
-</button>
-
-<button onclick="generatePdf()">
-    Generate PDF
-</button>
-
-<button onclick="openResume('software')">
-    Open Software Resume
-</button>
-
-<button onclick="openResume('robotics')">
-    Open Robotics Resume
-</button>
-
-<button onclick="openResume('architect')">
-    Open Architect Resume
-</button>
-
-<button onclick="openResume('management')">
-    Open Management Resume
-</button>
-
-<hr>
-
-<div id="jobs"></div>
-
-<script src="app.js"></script>
-
+            <button id="compileButton" type="submit" disabled>Compile PDF</button>
+            <p id="status" role="status" aria-live="polite">Loading current About...</p>
+        </form>
+    </main>
+    <script src="app.js"></script>
 </body>
 </html>
