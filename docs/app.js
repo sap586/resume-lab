@@ -10,6 +10,10 @@ const filenameField = document.getElementById('pdfName');
 const tokenField = document.getElementById('githubToken');
 const status = document.getElementById('status');
 const compileButton = document.getElementById('compileButton');
+const pdfList = document.getElementById('pdfList');
+const selectAllPdfs = document.getElementById('selectAllPdfs');
+const downloadSelected = document.getElementById('downloadSelected');
+const downloadStatus = document.getElementById('downloadStatus');
 
 function setStatus(message, link, label) {
     status.replaceChildren(document.createTextNode(message));
@@ -90,6 +94,71 @@ async function loadAbout() {
     }
 }
 
+async function loadAvailablePdfs() {
+    try {
+        const response = await fetch('./pdfs.json');
+        if (!response.ok) throw new Error(`Could not load the PDF catalog (${response.status}).`);
+        const files = await response.json();
+        if (!Array.isArray(files) || files.some(file => typeof file !== 'string' || !filenamePattern.test(file))) {
+            throw new Error('The PDF catalog has an invalid format.');
+        }
+
+        pdfList.replaceChildren();
+        if (files.length === 0) {
+            pdfList.textContent = 'No PDFs are currently available.';
+            return;
+        }
+
+        for (const filename of files) {
+            const label = document.createElement('label');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = filename;
+            checkbox.addEventListener('change', updatePdfSelection);
+            label.append(checkbox, document.createTextNode(` ${filename}.pdf`));
+            pdfList.append(label);
+        }
+        selectAllPdfs.disabled = false;
+        updatePdfSelection();
+    } catch (error) {
+        pdfList.textContent = 'Available PDFs could not be loaded.';
+        downloadStatus.textContent = error.message;
+    }
+}
+
+function updatePdfSelection() {
+    const checkboxes = [...pdfList.querySelectorAll('input[type="checkbox"]')];
+    const selectedCount = checkboxes.filter(checkbox => checkbox.checked).length;
+    selectAllPdfs.checked = checkboxes.length > 0 && selectedCount === checkboxes.length;
+    selectAllPdfs.indeterminate = selectedCount > 0 && selectedCount < checkboxes.length;
+    downloadSelected.disabled = selectedCount === 0;
+}
+
+selectAllPdfs.addEventListener('change', () => {
+    pdfList.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.checked = selectAllPdfs.checked;
+    });
+    updatePdfSelection();
+});
+
+downloadSelected.addEventListener('click', () => {
+    const selected = [...pdfList.querySelectorAll('input[type="checkbox"]:checked')];
+    if (selected.length === 0) {
+        downloadStatus.textContent = 'Select at least one PDF to download.';
+        return;
+    }
+
+    for (const checkbox of selected) {
+        const link = document.createElement('a');
+        link.href = `./pdfs/${encodeURIComponent(checkbox.value)}.pdf`;
+        link.download = `${checkbox.value}.pdf`;
+        document.body.append(link);
+        link.click();
+        link.remove();
+    }
+    downloadStatus.textContent = `Started ${selected.length} download${selected.length === 1 ? '' : 's'}.`;
+});
+
 form.addEventListener('submit', async event => {
     event.preventDefault();
     const token = tokenField.value.trim();
@@ -139,3 +208,4 @@ tokenField.addEventListener('change', () => {
 });
 
 loadAbout();
+loadAvailablePdfs();

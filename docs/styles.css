@@ -19,3 +19,12 @@ button:hover:not(:disabled){background:#0b514a}
 button:disabled{opacity:.55;cursor:wait}
 #status{min-height:1.5em;margin:4px 0;color:#485b57;line-height:1.5}
 a{color:#14695f}
+#pdf-downloads{margin-top:40px;padding-top:24px;border-top:1px solid #aab8b3}
+#pdf-downloads h2{font-size:24px;font-weight:normal;margin:0 0 12px}
+#pdf-downloads>p{color:#485b57;line-height:1.5}
+.select-all,.pdf-list label{display:flex;align-items:center;gap:10px}
+.select-all{margin:18px 0 12px}
+.select-all input,.pdf-list input{width:auto;margin:0}
+.pdf-list{display:grid;gap:10px;margin-bottom:18px}
+.pdf-list label{font-weight:normal;cursor:pointer}
+#downloadStatus{min-height:1.5em;margin:12px 0;color:#485b57;line-height:1.5}

@@ -30,6 +30,20 @@
             <button id="compileButton" type="submit" disabled>Compile PDF</button>
             <p id="status" role="status" aria-live="polite">Loading current About...</p>
         </form>
+
+        <section id="pdf-downloads" aria-labelledby="pdf-downloads-heading">
+            <h2 id="pdf-downloads-heading">Download available PDFs</h2>
+            <p>Select one or more files. Your browser may ask you to allow multiple downloads.</p>
+            <label class="select-all" for="selectAllPdfs">
+                <input id="selectAllPdfs" type="checkbox" disabled>
+                Select all
+            </label>
+            <div id="pdfList" class="pdf-list" role="group" aria-label="Available PDF files">
+                Loading available PDFs...
+            </div>
+            <button id="downloadSelected" type="button" disabled>Download selected</button>
+            <p id="downloadStatus" role="status" aria-live="polite"></p>
+        </section>
     </main>
     <script src="app.js"></script>
 </body>

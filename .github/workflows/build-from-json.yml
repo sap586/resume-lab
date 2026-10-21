@@ -41,11 +41,33 @@ jobs:
           cp tex/modifiable-about.tex "output/${PDF_NAME}/${PDF_NAME}.tex"
           cp "output/${PDF_NAME}/${PDF_NAME}.pdf" "docs/pdfs/${PDF_NAME}.pdf"
 
+      - name: Update published PDF catalog
+        run: |
+          python - <<'PY'
+          import json
+          import shutil
+          from pathlib import Path
+
+          output = Path("output")
+          published = Path("docs/pdfs")
+          published.mkdir(parents=True, exist_ok=True)
+          pdfs = sorted(output.rglob("*.pdf"), key=lambda path: path.as_posix().casefold())
+          filenames = [pdf.stem for pdf in pdfs]
+          if len(filenames) != len(set(filenames)):
+              raise SystemExit("PDF filenames must be unique across output subfolders.")
+          for pdf in pdfs:
+              shutil.copy2(pdf, published / pdf.name)
+          Path("docs/pdfs.json").write_text(
+              json.dumps(filenames, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
       - name: Commit resume files
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update resume PDF and source
-          file_pattern: docs/pdfs/*.pdf output/*/*.pdf output/*/*.tex
+          file_pattern: docs/pdfs/*.pdf docs/pdfs.json output/*/*.pdf output/*/*.tex
 
       - name: Upload resume artifact
         uses: actions/upload-artifact@v4
