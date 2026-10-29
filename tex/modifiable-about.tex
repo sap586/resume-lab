@@ -17,12 +17,14 @@
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{lipsum}
-\usepackage{fontawesome5}
 \usepackage{ragged2e}
+\usepackage{fontspec}
+\usepackage{fontawesome5}
+\usepackage{pgffor} % Standard package for looping
 
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour}
 \defaultfontfeatures{Mapping=tex-text}
-\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}[\titlerule]
+\titleformat{\section}{\large\scshape\raggedright}{}{0em}{}
 \titlespacing{\section}{0pt}{3pt}{3pt}
 \hyphenation{im-pre-se}
 \textblockorigin{2mm}{0.65\paperheight}
@@ -48,6 +50,58 @@
 \newcommand{\PreviousWorkBullet}[1]{
   \noindent\hspace*{2.0em}$\circ$ & {\fontspec{Inter} #1} \\
 }
+\usepackage{xcolor} % Required to change text and icon colors
+
+\usepackage{tikz}
+
+\newcommand*{\partcirc}[2]{%
+	\hspace{-1em}%
+	\begin{tikzpicture}[baseline=-0.6ex]
+		\draw[previousWork] (0,0) circle (1ex);
+		\fill[previousWork] (0,0) -- (#1:1ex) arc (#1:#2:1ex) -- cycle;
+	\end{tikzpicture}%
+	\hspace{1em}%
+}
+
+\newcommand*{\partcircfill}[1]{%
+	\hspace{-1em}%
+	\pgfmathsetmacro{\endangle}{90 - 3.6*#1}
+	\begin{tikzpicture}[baseline=-0.6ex]
+		\draw[previousWork] (0,0) circle (1ex);
+		\fill[previousWork] (0,0) -- (90:1ex) arc (90:\endangle:1ex) -- cycle;
+	\end{tikzpicture}%
+	\hspace{1em}%
+}
+
+\newcommand*{\pacman}[1]{%
+	\hspace{-1em}%
+	\pgfmathsetmacro{\mouth}{(100-#1)*1.8}
+	\begin{tikzpicture}[baseline=-0.6ex]
+		\fill[previousWork] (0,0) circle (1ex);
+		\fill[white] (0,0) -- (\mouth:1ex) arc (\mouth:-\mouth:1ex) -- cycle;
+		\draw[previousWork] (0,0) circle (1ex);
+	\end{tikzpicture}%
+	\hspace{1em}%
+}
+
+
+\newcommand{\stars}[1]{%
+    \begin{minipage}[b]{6em}% Adjust width to fit nicely inline
+    \foreach \i in {1,...,5} {%
+        \pgfmathparse{#1 - \i + 1}%
+        \let\r=\pgfmathresult%
+        \pgfmathparse{\r >= 1 ? 1 : (\r <= 0 ? 0 : 0.5)}%
+        \let\status=\pgfmathresult%
+        \ifdim\status pt=1pt%
+            \textcolor{black!60}{\faStar}% Full star (60% black/dark grey)
+        \else\ifdim\status pt=0.5pt%
+            \textcolor{black!60}{\faStarHalf*}% Half star (60% black/dark grey)
+        \else%
+            \textcolor{black!20}{\faStar[regular]}% Empty star (Light grey outline)
+        \fi\fi%
+    }%
+    \end{minipage}%
+}
 
 
 \begin{document}
@@ -67,27 +121,45 @@ comments
 %Section: Title--------------------------------------
 \centering
 \href{https://sap586.github.io/Resume/}{$ \Uparrow$}{Sagar Panchal}	\\
-\small \href{mailto:sap586@nyu.edu}{sap586@nyu.edu}		\textbullet{+1 (607) 314-0114}		\textbullet {Binghamton, NY - 13901}	\\
-\par	
-	
+\small \href{mailto:sap586@nyu.edu}{sap586@nyu.edu}		\textbullet{+1 (607) 314-0114}		\textbullet {Broome, NY - 13901}	\\
+
+\vspace{-0.8em}
+
+\begin{tikzpicture}[overlay,remember picture]
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(-10cm,0.5cm) -- (-6cm,0.5cm) -- (-6cm,0.25cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(-6cm,0.25cm) -- (-6cm,0cm) -- (10cm,0cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(10cm,-1.75cm) -- (-10cm,-1.75cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(-10cm,-3.55cm) -- (10cm,-3.55cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(10cm,-7.1cm) -- (-4.3cm,-7.1cm) -- (-4.3cm,-6.8cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(-4.3cm,-6.8cm) -- (-4.3cm,-6.6cm) -- (-6.3cm,-6.6cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(-6.3cm,-6.6cm) -- (-10cm,-6.6cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(-10cm,-27.8cm) -- (10cm,-27.8cm);
+
+\end{tikzpicture}
+
 %Section: About--------------------------------------
-\vspace{-1.8em} % adjust value until it looks balanced
+\vspace{-2.5em} % adjust value until it looks balanced
 \parbox{1\linewidth}{
-\section{\SectionSize{\textbf{About}}}
+\section{\SectionSize{\textbf{About:}}}
 \begin{justify}
 {\fontspec{Inter}
 {\color{currentWork}
-% ABOUT_START
-Software Engineer with hands on Machine operation experience. My career has given me opportunity to work across the full technology stack from mechanical installations to studying, developing and maintaining critical components of multi-million line codebases powering advanced automation systems. Seeking opportunities to build impactful technologies while continuing to grow as an engineer and problem solver.
-% ABOUT_END
+Software Engineer with hands-on Machine operation experience. My career has given me opportunity to work across the full technology stack, all the way from hard core mechanical installations to studying, developing and maintaining critical components of multi-million line codebases powering advanced automation systems. Currently seeking opportunities to build impactful technologies while continuing to grow as an engineer and problem solver.
 }
 }
 \end{justify}
 }
-
 %Section: Education--------------------------------------
-\vspace{0em} % adjust value until it looks balanced
-\section{\SectionSize{\textbf{Education}}}
+\section{\SectionSize{\textbf{Education:}}}
+\vspace{-2em}
 \begin{tabular}{rl}
 \textsc{	MS, Computer engineering \small {(3.41/4)}		}						&	--	\textsc{	Dec-17 	\faGraduationCap		}	\\
 \textsc{	\large {New York University} \nyu\;		}								&	\\
@@ -96,23 +168,24 @@ Software Engineer with hands on Machine operation experience. My career has give
 \end{tabular}
 
 %Section: Skills--------------------------------------
-\vspace{-2em} % adjust value until it looks balanced
-\section{\SectionSize{\textbf{Skills}}}
-\begin{tabular}{rl}	\small{}
+\section{\SectionSize{\textbf{Skills:}}}
+\vspace{-2em}
 
-
-	\small{}\textsc{		Programming:			}	& \textsc{	\small{c/c\texttt{++}}, CS, Java(primary), Python (automation and AI scripting),		}	\\
-														& \textsc{	web(html, css, js), databases(SQL, MDB)													} 	\\
-	\small{}\textsc{		Automation \& Robotics:	}	& \textsc{	Real-time systems (VxWorks), MV3100 industrial controller,								}	\\
-														& \textsc{	machine vision (Cognex, Keyence, OpenCV),												} 	\\
-														& \textsc{	motion control,	PLC Programming (Ladder \& FBD), MES/SCADA integration					} 	\\
-	\small{}\textsc{		SCM \& Tools:			}	& \textsc{	Git (Bash \& Sourcetree), Jira workflows, VS Code, Visual Studio (2010, 15, 22),		}	\\
-														& \textsc{	NetBeans, Wireshark, WindRiver, Tornado													} 	\\
+\hspace{6em}\begin{tabular}{rl}	\small{}
+\small{}	   {		Process Control :		}	&	{	\partcircfill{82}		Control logic implementation, execution and testing							}		\\
+\small{}	   {								}	&	{	\partcircfill{78}		Process improvement and enhancement											}		\\
+\small{} 	   {		Software :				}	& 	{ 	\partcircfill{70} 	Desktop - Java (Primary), C\#, Python (AI-driven workflows), Web - HTML, CSS, JS	} 		\\
+\small{} 											& 	{ 	\partcircfill{80} 	Maintain large-scale \& legacy software systems 										} 		\\
+\small{} 											& 	{ 	\partcircfill{85} 	Git(SourceTree, Bash) 														} 		\\
+\small{}	   {		Automation :			}	&	{	\partcircfill{80}		PC based Machine Automation systems (C,C++,C\#,Java)						}		\\
+\small{}	   {								}	&	{	\partcircfill{78}		Real Time \& Distributed Systems (VxWorks)									}		\\
+\small{}	   {								}	&	{	\partcircfill{72}		Vision Systems (Keyence, Cognex, OpenCV)									}		\\
+\small{}	   										&	{	\partcircfill{50}		PLC Based Industrial Automation systems (Ladder, FBD), HMI, SCADA									}		\\
 \end{tabular}
 
 %Section: Professional Experience--------------------------------------
-\vspace{0em} % adjust value until it looks balanced
-\section{\SectionSize\textbf{Professional Experience}}
+\vspace{-1.8em}
+\section{\SectionSize\textbf{Professional Experience:}}
 
 \noindent
 \colorbox{gray!15}{
@@ -134,7 +207,7 @@ Software Engineer with hands on Machine operation experience. My career has give
 \textbullet	&		{\fontspec{Inter}	Upgraded the AMS workflow from a single point to 13 wafer-level locations, significantly improving placement accuracy and calibration robustness.}	\\
 \textbullet	&		{\fontspec{Inter}	Built the wafer-to-board mapping system that converts customer wafer maps into Fuzion board templates, eliminating hours of manual template creation and enabling direct wafer-data usage.}	\\
 \textbullet	&		{\fontspec{Inter}	Implemented AVP, enabling user-defined fiducial finds across ECS, NPI, and Production workflows, increasing alignment flexibility and reducing setup constraints.}	\\
-\textbullet	&		{\fontspec{Inter}	Integrated Cognex QuickBuild (VPP) with MCOS↔QBIT TCP/IP triggers and full reject/retry handling, enabling Dispense Quality Inspection on the Precision-Bonder platform for the first time.}	\\
+\textbullet	&		{\fontspec{Inter}	Integrated Cognex QuickBuild (VPP) with MCOS↔️QBIT TCP/IP triggers and full reject/retry handling, enabling Dispense Quality Inspection on the Precision-Bonder platform for the first time.}	\\
 \textbullet	&		{\fontspec{Inter}	Delivered multiple platform-level enhancements including the Light Intensity Controller, nested-tray support, isosceles fiducial and configurable park-position, strengthening core system capability.}	\\
 \end{tabular}
 }
@@ -152,7 +225,7 @@ Software Engineer with hands on Machine operation experience. My career has give
 {\color{previousWork}
 \begin{tabular}{r p{0.95\linewidth}}
 $\circ$	&	{\fontspec{Inter}	Designed SCADA interfaces and integrated PLC logic with inverter and sensor data to deliver reliable solar power-plant automation including FAT and commissioning support.	}	\\
-%$\circ$	&	{\fontspec{Inter}	Tech stack: Ignition SCADA · GE PLC · SEL‑RTAC · Red Lion												}	\\
+$\circ$	&	{\fontspec{Inter}	Tech stack: Ignition SCADA · GE PLC · SEL‑RTAC · Red Lion												}	\\
 \end{tabular}
 }
 
@@ -247,10 +320,6 @@ $\circ$	&	{\fontspec{Inter}	Designed and validated electrical control systems - 
 }
 
 \SpaceBetweenJobs
-
-\vspace{0.8em}
-		
-\hrule
-
-\small 	{	\hfill {This document is prepared using \LaTeX. Click \href{https://raw.githubusercontent.com/sap586/Resume/refs/heads/main/tex/Sagar-1p-Rob.tex}{here} to download the source code.}
+\vspace{0.1em}
+\small 	{	\hfill {This document is prepared using \LaTeX. Click \href{https://raw.githubusercontent.com/sap586/Resume/refs/heads/main/tex/sap586.tex}{here} to download the source code.}
 \end{document}
