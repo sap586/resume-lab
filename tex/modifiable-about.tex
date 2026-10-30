@@ -21,6 +21,7 @@
 \usepackage{fontspec}
 \usepackage{fontawesome5}
 \usepackage{pgffor} % Standard package for looping
+\usepackage{tabularx}
 
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour, linkcolor=linkcolour}
 \defaultfontfeatures{Mapping=tex-text}
@@ -67,8 +68,14 @@
 	\hspace{-1em}%
 	\pgfmathsetmacro{\endangle}{90 - 3.6*#1}
 	\begin{tikzpicture}[baseline=-0.6ex]
-		\draw[previousWork] (0,0) circle (1ex);
-		\fill[previousWork] (0,0) -- (90:1ex) arc (90:\endangle:1ex) -- cycle;
+		\ifnum#1>0
+			\draw[previousWork] (0,0) circle (1ex);
+			\fill[previousWork] (0,0) -- (90:1ex) arc (90:\endangle:1ex) -- cycle;
+		\else
+			\path (0,0) circle (1ex);
+		\fi
+%		\draw[previousWork] (0,0) circle (1ex);
+%		\fill[previousWork] (0,0) -- (90:1ex) arc (90:\endangle:1ex) -- cycle;
 	\end{tikzpicture}%
 	\hspace{1em}%
 }
@@ -135,11 +142,15 @@ comments
 \draw[gray, line width=0.8pt, rounded corners=4pt]
 (-10cm,-3.55cm) -- (10cm,-3.55cm);
 \draw[gray, line width=0.8pt, rounded corners=4pt]
-(10cm,-7.1cm) -- (-4.3cm,-7.1cm) -- (-4.3cm,-6.8cm);
+(-0.5cm,-4cm) -- (-0.5cm,-6.55cm);
 \draw[gray, line width=0.8pt, rounded corners=4pt]
-(-4.3cm,-6.8cm) -- (-4.3cm,-6.6cm) -- (-6.3cm,-6.6cm);
+(-0.5cm,-5.55cm) -- (4.5cm,-5.55cm);
 \draw[gray, line width=0.8pt, rounded corners=4pt]
-(-6.3cm,-6.6cm) -- (-10cm,-6.6cm);
+(10cm,-7.2cm) -- (-2.3cm,-7.2cm) -- (-2.3cm,-6.8cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(-2.3cm,-6.9cm) -- (-2.3cm,-6.7cm) -- (-6.3cm,-6.7cm);
+\draw[gray, line width=0.8pt, rounded corners=4pt]
+(-6.3cm,-6.7cm) -- (-10cm,-6.7cm);
 \draw[gray, line width=0.8pt, rounded corners=4pt]
 (-10cm,-27.8cm) -- (10cm,-27.8cm);
 
@@ -173,20 +184,32 @@ Software Engineer with hands-on Machine operation experience. My career has give
 \section{\SectionSize{\textbf{Skills:}}}
 \vspace{-2em}
 
-\hspace{6em}\begin{tabular}{rl}	\small{}
-\small{}	   {		Process Control :		}	&	{	\partcircfill{82}		Control logic implementation, execution and testing							}		\\
-\small{}	   {								}	&	{	\partcircfill{78}		Process improvement and enhancement											}		\\
-\small{} 	   {		Software :				}	& 	{ 	\partcircfill{70} 	Desktop - Java (Primary), C\#, Python (AI-driven workflows), Web - HTML, CSS, JS	} 		\\
-\small{} 											& 	{ 	\partcircfill{80} 	Maintain large-scale \& legacy software systems 										} 		\\
-\small{} 											& 	{ 	\partcircfill{85} 	Git(SourceTree, Bash) 														} 		\\
-\small{}	   {		Automation :			}	&	{	\partcircfill{80}		PC based Machine Automation systems (C,C++,C\#,Java)						}		\\
-\small{}	   {								}	&	{	\partcircfill{78}		Real Time \& Distributed Systems (VxWorks)									}		\\
-\small{}	   {								}	&	{	\partcircfill{72}		Vision Systems (Keyence, Cognex, OpenCV)									}		\\
-\small{}	   										&	{	\partcircfill{50}		PLC Based Industrial Automation systems (Ladder, FBD), HMI, SCADA									}		\\
+\begin{tabular}{p{0.40\textwidth}p{0.40\textwidth}}
+{	\partcircfill{0}	Automation: 								}	& {	\partcircfill{0}	Software Development:								}\\
+{	\partcircfill{85}	PC based Machine Automation systems			}	& {	\partcircfill{82}	Desktop - Java(Primary), C\#, Python (AI-driven)	}\\
+{ 	\partcircfill{0} 	(C,C++,C\#,Java)							}	& { \partcircfill{0} 	Web - HTML, CSS, JS									}\\
+{ 	\partcircfill{75} 	Real Time systems (VxWorks)					} 	& { \partcircfill{80} 	Git(SourceTree, Bash), Jira, Bitbucket workflows 	}\\
+{ 	\partcircfill{75} 	Distributed \& embedded systems				}	& { \partcircfill{82} 	Maintaining large-scale \& legacy codebases			}\\
+{	\partcircfill{68}	Vision Systems								}	& {	\partcircfill{0}	Process:											}\\
+{	\partcircfill{50}	PLC Based Industrial Automation systems		}	& {	\partcircfill{82}	Control logic implementation, execution \& testing 	}\\
+{	\partcircfill{0}	(Ladder, FBD), HMI, SCADA					}	& {	\partcircfill{82}	Process improvement \& enhancement 					}\\
+																		& {	\partcircfill{85}	Machine Operation									}\\
 \end{tabular}
 
+%\hspace{6em}\begin{tabular}{rl}	\small{}
+%\small{}	   {		Process Control :		}	&	{	\partcircfill{82}	Control logic implementation, execution and testing									}		\\
+%\small{}	   {								}	&	{	\partcircfill{78}	Process improvement and enhancement													}		\\
+%\small{} 	   {		Software :				}	& 	{ 	\partcircfill{70} 	Desktop - Java (Primary), C\#, Python (AI-driven workflows), Web - HTML, CSS, JS	} 		\\
+%\small{} 											& 	{ 	\partcircfill{80} 	Maintain large-scale \& legacy software systems 									} 		\\
+%\small{} 											& 	{ 	\partcircfill{85} 	Git(SourceTree, Bash) 																} 		\\
+%\small{}	   {		Automation :			}	&	{	\partcircfill{80}	PC based Machine Automation systems (C,C++,C\#,Java)								}		\\
+%\small{}	   {								}	&	{	\partcircfill{78}	Real Time \& Distributed Systems (VxWorks)											}		\\
+%\small{}	   {								}	&	{	\partcircfill{72}	Vision Systems (Keyence, Cognex, OpenCV)											}		\\
+%\small{}	   										&	{	\partcircfill{50}	PLC Based Industrial Automation systems (Ladder, FBD), HMI, SCADA					}		\\
+%\end{tabular}
+
 %Section: Professional Experience--------------------------------------
-\vspace{-1.8em}
+\vspace{-1.5em}
 \section{\SectionSize\textbf{Professional Experience:}}
 
 \noindent
@@ -209,7 +232,7 @@ Software Engineer with hands-on Machine operation experience. My career has give
 \textbullet	&		{\fontspec{Inter}	Upgraded the AMS workflow from a single point to 13 wafer-level locations, significantly improving placement accuracy and calibration robustness.}	\\
 \textbullet	&		{\fontspec{Inter}	Built the wafer-to-board mapping system that converts customer wafer maps into Fuzion board templates, eliminating hours of manual template creation and enabling direct wafer-data usage.}	\\
 \textbullet	&		{\fontspec{Inter}	Implemented AVP, enabling user-defined fiducial finds across ECS, NPI, and Production workflows, increasing alignment flexibility and reducing setup constraints.}	\\
-\textbullet	&		{\fontspec{Inter}	Integrated Cognex QuickBuild (VPP) with MCOS↔️QBIT TCP/IP triggers and full reject/retry handling, enabling Dispense Quality Inspection on the Precision-Bonder platform for the first time.}	\\
+\textbullet	&		{\fontspec{Inter}	Integrated Cognex QuickBuild (VPP) with MCOS↔QBIT TCP/IP triggers and full reject/retry handling, enabling Dispense Quality Inspection on the Precision-Bonder platform for the first time.}	\\
 \textbullet	&		{\fontspec{Inter}	Delivered multiple platform-level enhancements including the Light Intensity Controller, nested-tray support, isosceles fiducial and configurable park-position, strengthening core system capability.}	\\
 \end{tabular}
 }
@@ -227,7 +250,7 @@ Software Engineer with hands-on Machine operation experience. My career has give
 {\color{previousWork}
 \begin{tabular}{r p{0.95\linewidth}}
 $\circ$	&	{\fontspec{Inter}	Designed SCADA interfaces and integrated PLC logic with inverter and sensor data to deliver reliable solar power-plant automation including FAT and commissioning support.	}	\\
-$\circ$	&	{\fontspec{Inter}	Tech stack: Ignition SCADA · GE PLC · SEL‑RTAC · Red Lion												}	\\
+$\circ$	&	{\fontspec{Inter}	Tech stack: Ignition SCADA · GE PLC · SEL-RTAC · Red Lion												}	\\
 \end{tabular}
 }
 
@@ -244,9 +267,9 @@ $\circ$	&	{\fontspec{Inter}	Tech stack: Ignition SCADA · GE PLC · SEL‑RTAC �
 }
 {\color{previousWork}
 \begin{tabular}{r p{0.95\linewidth}}
-$\circ$	&	{\fontspec{Inter}	Evolved automation software across rotary machines coordinating servo-motion via PCI-e, sensor‑driven logic, CV inspection, EVT automation, and database-supported workflows.	}	\\
-$\circ$	&	{\fontspec{Inter}	Enhanced precision laser-measurement stations, semiconductor-packaging machines, and PID-controlled TVAC systems by integrating database‑linked classification logic, improving QA reliability and reducing manual effort.	}	\\
-$\circ$	&	{\fontspec{Inter}	Built and modernized full-stack systems including the public shopping‑cart redesign, product‑visibility management and lifecycle-tracking tools, increasing platform reliability and removing hours of manual data handling.	}	\\
+$\circ$	&	{\fontspec{Inter}	Evolved automation software across rotary machines coordinating servo-motion via PCI-e, sensor-driven logic, CV inspection, EVT automation, and database-supported workflows.	}	\\
+$\circ$	&	{\fontspec{Inter}	Enhanced precision laser-measurement stations, semiconductor-packaging machines, and PID-controlled TVAC systems by integrating database-linked classification logic, improving QA reliability and reducing manual effort.	}	\\
+$\circ$	&	{\fontspec{Inter}	Built and modernized full-stack systems including the public shopping-cart redesign, product-visibility management and lifecycle-tracking tools, increasing platform reliability and removing hours of manual data handling.	}	\\
 \end{tabular}
 }
 
@@ -278,7 +301,7 @@ $\circ$	&	{\fontspec{Inter}	Deployed sensors at multiple NYC locations and valid
 }
 {\color{previousWork}
 \begin{tabular}{r p{0.95\linewidth}}
-$\circ$	&	{\fontspec{Inter}	Mentored high‑school robotics teams in autonomous‑robot workflows for FIRST-Robotics/VEX competitions.							}	\\
+$\circ$	&	{\fontspec{Inter}	Mentored high-school robotics teams in autonomous-robot workflows for FIRST-Robotics/VEX competitions.							}	\\
 $\circ$	&	{\fontspec{Inter}	Taught foundational programming concepts in Arduino \& sensor-integration to student robotics teams.	}	\
 \end{tabular}
 }
