@@ -44,6 +44,7 @@
 \newcommand{\apple}{\char"F8FF}
 \newcommand{\SectionSize}{\large}
 \newcommand{\SpaceBetweenJobs}{\vspace{-1em}}
+\newcommand{\SpaceBetweenJobsSpecial}{\vspace{-1.6em}}
 \newcommand{\nyu}{\raisebox{-0.8ex}{\includegraphics[height=1.2em]{NYU.png}}}
 \newcommand{\CurrentWorkBullet}[1]{
   \noindent\hspace*{2.0em}\textbullet & {\fontspec{Inter} #1} \\
@@ -160,7 +161,7 @@ comments
 {\fontspec{Inter}
 {\color{currentWork}
 % ABOUT_START
-Software Engineer with hands-on Machine operation experience. My career has spanned the full spectrum of automation engineering, from hands-on electrical testing and debugging to developing and maintaining critical software components within large-scale codebases that power advanced manufacturing systems. Currently seeking opportunities to build impactful technologies while continuing to grow as an engineer and problem solver.
+Software Engineer with hands-on machine operation experience, my career has spanned the full spectrum of Automation Engineering, from hands-on electrical testing and troubleshooting to developing and maintaining critical sections of large-scale codebases that powers complex machineries, enabling them to do complicated tasks. Currently seeking opportunities to solve bigger problems, grow with evolving technology while contributing to build advanced automation systems.
 % ABOUT_END
 }
 }
@@ -180,16 +181,28 @@ Software Engineer with hands-on Machine operation experience. My career has span
 \section{\SectionSize{\textbf{Skills:}}}
 \vspace{-3em}
 
-\hfill\begin{tabular}{p{0.50\textwidth}p{0.38\textwidth}}
-{	\partcircfill{0}	 																				}	& {		}\\
-{	\partcircfill{0}	Automation:																		}	& {		}\\
-{ 	\partcircfill{85} 	PC based machine automation systems (C,C++,C\#,Java)							}	& { \partcircfill{0}	Software Development:										}\\
-{ 	\partcircfill{75} 	Machine control (real-time) operating system (VxWorks)							} 	& { \partcircfill{82}	\rlap{Desktop - Java(Primary), C\#, Python (AI-driven)	}	}\\
-{ 	\partcircfill{75} 	User Interface/HMI																}	& { \partcircfill{70} 	Web - HTML, CSS, JS											}\\
-{	\partcircfill{80}	Process enhancements															}	& {	\partcircfill{80} 	Git(SourceTree, Bash), Jira, Bitbucket 						}\\
-{	\partcircfill{80}	Control logic implementation, execution, testing								}	& {	\partcircfill{82} 	Maintaining large-scale \& legacy codebases					}\\
-{	\partcircfill{50}	\rlap{PLC based industrial automation systems (Ladder, FBD), HMI, SCADA		}	}	& {		}\\
+\hfill\begin{tabular}{p{0.38\textwidth}p{0.50\textwidth}}
+{	\partcircfill{0}	 				}	& {		}\\
+{	Software:							}	& {		}\\
+{ 	\textbullet	\rlap{	C, C++, C\#, \underline{Java}								}	}	& { \partcircfill{0}	Automation:											}\\
+{ 	\textbullet	\rlap{	Git (SourceTree, bash)										}	} 	& { \partcircfill{82}	Distributed control systems (PC + RTOS(VxWorks))	}\\
+{ 	\textbullet	\rlap{	AI-driven : Python, github actions							}	}	& { \partcircfill{75} 	PC-based machine control systems					}\\
+{	\textbullet	\rlap{	Web \& db applications										}	}	& {	\partcircfill{65} 	Embedded control systems 							}\\
+{	\textbullet	\rlap{	Upgrading large-scale \& legacy codebases						}	}	& {	\partcircfill{50} 	PLC/SCADA based automation systems (Ladder. FBD)	}\\
+{	\textbullet	\rlap{	Vision, sensing \& motion control : optical and non-optical sensors, process-level motion sequencing		}	}	& {		}\\
+
 \end{tabular}
+
+%\hfill\begin{tabular}{p{0.50\textwidth}p{0.38\textwidth}}
+%{	\partcircfill{0}	 																				}	& {		}\\
+%{	\partcircfill{0}	Automation:																		}	& {		}\\
+%{ 	\partcircfill{85} 	PC based machine automation systems (C,C++,C\#,Java)							}	& { \partcircfill{0}	Software Development:										}\\
+%{ 	\partcircfill{75} 	Real-time operating system (VxWorks)											} 	& { \partcircfill{82}	\rlap{Desktop - \underline{Java}, C\#, Python (AI-driven)	}	}\\
+%{ 	\partcircfill{65} 	Computer Vision (Keyence, Cognex \& previously OpenCV)							}	& { \partcircfill{70} 	Web - HTML, CSS, JS, DB - MDB, SQL							}\\
+%{	\partcircfill{80}	Control logic implementation, execution \& testing								}	& {	\partcircfill{80} 	Git(SourceTree, Bash), Jira, Bitbucket 						}\\
+%{	\partcircfill{72}	System troubleshooting \& root cause analysis								}	& {	\partcircfill{82} 	Maintaining large-scale \& legacy codebases					}\\
+%{	\partcircfill{50}	\rlap{PLC based industrial automation systems (Ladder, FBD), HMI, SCADA		}	}	& {		}\\
+%\end{tabular}
 
 %\hspace{6em}\begin{tabular}{rl}	\small{}
 %\small{}	   {		Process Control :		}	&	{	\partcircfill{82}	Control logic implementation, execution and testing									}		\\
@@ -208,8 +221,9 @@ Software Engineer with hands-on Machine operation experience. My career has span
 \section{\SectionSize\textbf{Professional Experience:}}
 \vspace{-0.5em}
 \noindent
+\hspace*{-2em}
 \colorbox{gray!15}{
-    \parbox[c][0.8em][c]{\linewidth}{   % <— controls height
+    \parbox[c][0.8em][c]{1.05\linewidth}{   % <— controls height
         {\large \faBriefcase\; \textsc{Software Engineer III - Automation, Universal Instruments, NY}}
         \hfill \emph{Sep 22 - present}
     }
@@ -217,7 +231,7 @@ Software Engineer with hands-on Machine operation experience. My career has span
 {\color{currentWork}
 \begin{tabular}{r p{0.95\linewidth}}
 \multicolumn{2}{l}{\fontspec{Inter}Core Responsibilities:} \\
-\textbullet	&		{\fontspec{Inter}	Maintain and evolve high-precision, high-speed software modules across the Fuzion SMT platform, ensuring reliability, performance, and production readiness.	}	\\
+\textbullet	&		{\fontspec{Inter}	Maintain and evolve software modules across high-precision, high-speed Fuzion SMT platform, ensuring reliability, performance, and production readiness.	}	\\
 \textbullet	&		{\fontspec{Inter}	Lead remote production-line diagnostics by analyzing logs, replicating site conditions, performing root-cause investigations and delivering targeted fixes, patches, and release updates.	}	\\		
 \textbullet	&		{\fontspec{Inter}	Conduct code reviews and enforce software-quality standards across the platform, ensuring robust design, maintainability and consistency in mission-critical automation workflows.	}	\\
 \textbullet	&		{\fontspec{Inter}	Enable field and application engineers to successfully deploy and validate applications by providing technical guidance, interpreting machine data, and supplying required configurations or software updates.	}	\\
@@ -226,8 +240,9 @@ Software Engineer with hands-on Machine operation experience. My career has span
 \textbullet	&		{\fontspec{Inter}	Designed, developed, and delivered \underline{Selective Placement}, Fuzion’s first smart pick/buffer/place workflow using customer provided categories and avoiding-priorities, improving product quality and placement intelligence.	}	\\
 \textbullet	&		{\fontspec{Inter}	Engineered SBS using Keyence SR-X300, delivering Fuzion’s first side-barcode scanning capability, making fuzion scan barcode in all the three X, Y and Z axes, with live-view, traceability, and full error-recovery retuning support.}	\\
 \textbullet	&		{\fontspec{Inter}	Upgraded the AMS workflow from a single point to 13 wafer-level locations, improving calibration robustness and hence maintaining placement accuracy.}	\\
+\textbullet	&		{\fontspec{Inter}	Increased platform intelligence by enabling Fuzion to make its own decision to bypass configurable number of pockets for DTF fed matrix trays instead of waiting for operator input on every barcode failures.}	\\
 \textbullet	&		{\fontspec{Inter}	Built the wafer-to-board mapping system that converts customer wafer maps into Fuzion board templates, eliminating hours of manual template creation and enabling direct wafer-data usage.}	\\
-\textbullet	&		{\fontspec{Inter}	Lead Initial implementation of AVP (	Advanced Vision Processing), enabling user-defined fiducial finds across ECS, NPI, and Production workflows, increasing alignment flexibility and reducing setup constraints.}	\\
+\textbullet	&		{\fontspec{Inter}	Lead Initial implementation of AVP (Advanced Vision Processing), enabling user-defined fiducial finds across ECS, NPI, and Production workflows, increasing alignment flexibility and reducing setup constraints.}	\\
 \textbullet	&		{\fontspec{Inter}	Integrated Cognex QuickBuild (VPP) with MCOS↔QBIT TCP/IP triggers and full reject/retry handling, enabling Dispense Quality Inspection on the Precision-Bonder platform for the first time.}	\\
 \textbullet	&		{\fontspec{Inter}	Delivered multiple platform-level enhancements including the Light Intensity Controller, nested-tray support, isosceles fiducial and configurable park-position, strengthening core system capability.}	\\
 \end{tabular}
@@ -237,8 +252,9 @@ Software Engineer with hands-on Machine operation experience. My career has span
 	
 %	
 \noindent
+\hspace*{-2em}
 \colorbox{gray!15}{
-    \parbox[c][0.6em][c]{\linewidth}{
+    \parbox[c][0.6em][c]{1.05\linewidth}{
         \faBriefcase\;\textsc{Automation Engineer	, Nor-Cal controls, Ca}
         \hfill \emph{Jan - Jul 22}
     }
@@ -255,8 +271,9 @@ $\circ$	&	{\fontspec{Inter}	Tech stack: Ignition SCADA · GE PLC · SEL-RTAC · 
 %
 	
 \noindent
+\hspace*{-2em}
 \colorbox{gray!15}{
-    \parbox[c][0.6em][c]{\linewidth}{
+    \parbox[c][0.6em][c]{1.05\linewidth}{
         \faBriefcase\;\textsc{Software Engineer - Machine Automation, Mini-Circuits, NY}
         \hfill \emph{Feb 18 - Nov 21}
     }
@@ -298,10 +315,9 @@ $\circ$	&	{\fontspec{Inter}	Deployed sensors at multiple NYC locations and valid
 {\color{previousWork}
 \begin{tabular}{r p{0.95\linewidth}}
 $\circ$	&	{\fontspec{Inter}	Mentored high-school robotics teams in autonomous-robot workflows for FIRST-Robotics/VEX competitions.							}	\\
-$\circ$	&	{\fontspec{Inter}	Taught foundational programming concepts in Arduino \& sensor-integration to student robotics teams.	}	\
+$\circ$	&	{\fontspec{Inter}	Taught foundational programming concepts in Arduino \& sensor-integration to student robotics teams.	}	\\
 \end{tabular}
 }
-
 \SpaceBetweenJobs
 
 {\color{previousCompany}
@@ -314,21 +330,16 @@ $\circ$	&	{\fontspec{Inter}	Taught foundational programming concepts in Arduino 
 }
 {\color{previousWork}
 \begin{tabular}{r p{0.95\linewidth}}
-$\circ$	&	{\fontspec{Inter}	Mentored high-school interns in Arduino, IoT, robotics, and 3D printing \& led STEM projects including:												}	\\
-		&	-{\fontspec{Inter}	\textsc{Autonomous Car (Mouse in a Maze)} - STM32 Board: \href{https://github.com/sap586/RTES_Project}{https://github.com/sap586/RTES\_Project}			}	\\
-		&	-{\fontspec{Inter}	\textsc{Wireless Robot Controller} - Arduino: \href{https://github.com/sap586/WirelessRobotDay5Activity}{https://github.com/sap586/WirelessRobotDay5Activity}	}	\\
+$\circ$	&	{\fontspec{Inter}	Mentored high-school interns in Arduino, IoT, robotics, and 3D printing \& led STEM projects including \href{https://github.com/sap586/WirelessRobotDay5Activity}{Wireless car}.	}	\\
 \end{tabular}
 }
+\SpaceBetweenJobsSpecial
 
-\SpaceBetweenJobs
-
-
-
-%--
 {\color{previousCompany}
+\hspace*{-2em}
 \noindent
 \colorbox{gray!15}{
-    \parbox[c][0.6em][c]{\linewidth}{
+    \parbox[c][0.6em][c]{1.05\linewidth}{
         \faBriefcase\;\textsc{Automation Engineer, Prima Automation, Ahmedabad, IN}
         \hfill \emph{Jun 14 - Jan 16}
     }
